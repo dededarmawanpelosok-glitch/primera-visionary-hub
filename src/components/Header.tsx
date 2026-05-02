@@ -25,13 +25,23 @@ export function Header() {
       }`}
     >
       <div className="container-x flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className="flex items-center gap-2" aria-label={SITE.name}>
+        <Link to="/" className="flex items-center gap-3" aria-label={SITE.name}>
           <img
             src={logo}
             alt={`${SITE.short} logo`}
-            className={`h-6 md:h-7 w-auto object-contain transition-[filter] duration-500 ${scrolled ? "" : "invert brightness-0 contrast-200"}`}
+            className={`h-7 md:h-8 w-auto object-contain transition-[filter] duration-500 ${
+              scrolled
+                ? ""
+                : "[filter:invert(1)_brightness(2)_drop-shadow(0_2px_8px_rgba(0,0,0,0.55))]"
+            }`}
           />
-          <span className="sr-only">{SITE.name}</span>
+          <span
+            className={`hidden sm:inline-block font-display tracking-[0.2em] text-[11px] uppercase transition-colors duration-500 ${
+              scrolled ? "text-ink/70" : "text-cream/90 [text-shadow:0_2px_8px_rgba(0,0,0,0.6)]"
+            }`}
+          >
+            Primera Karya Sinergia
+          </span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">

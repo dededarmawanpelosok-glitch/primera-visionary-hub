@@ -45,73 +45,90 @@ function HomePage() {
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-ink text-cream min-h-[100vh] flex flex-col">
-      {/* Background image — anchored top so faces stay visible, dark base for contrast */}
-      <motion.div
-        initial={{ scale: 1.08, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute inset-0 -z-10"
-      >
-        <img
+      {/* TOP PANEL: hero image — fully visible, never cropped */}
+      <div className="relative w-full h-[58vh] md:h-[62vh] lg:h-[64vh] overflow-hidden bg-ink">
+        {/* Ambient blurred backdrop fills letterbox area */}
+        <motion.img
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1.15, opacity: 0.45 }}
+          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+          src={heroImg}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover blur-2xl"
+        />
+        {/* Foreground full-fit image — preserves entire composition incl. wordmark */}
+        <motion.img
+          initial={{ scale: 1.04, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
           src={heroImg}
           alt="Primera Karya Sinergia leadership team in a strategic boardroom session"
-          className="h-full w-full object-cover object-[center_30%]"
+          className="relative h-full w-full object-contain object-center"
         />
-        {/* Layered cinematic overlays — heavy bottom for text legibility, soft top */}
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/45" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-ink/25 to-ink/55" />
-        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink via-ink/70 to-transparent" />
-      </motion.div>
+        {/* Smooth blend into bottom panel */}
+        <div className="absolute inset-x-0 -bottom-px h-32 bg-gradient-to-b from-transparent to-ink" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink/60 to-transparent" />
+      </div>
 
-      {/* Subtle grain + grid for premium texture */}
-      <div className="absolute inset-0 grid-bg opacity-[0.18] -z-[5]" />
-      <div className="absolute inset-x-0 top-[58%] h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+      {/* Gold hairline divider */}
+      <div className="relative">
+        <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+      </div>
 
-      {/* Content — single column, anchored bottom-left for clean editorial feel */}
-      <div className="container-x relative w-full flex-1 flex flex-col justify-end pb-14 md:pb-20 pt-32">
-        <Reveal>
-          <div className="flex items-center gap-3">
-            <span className="h-px w-10 bg-gold" />
-            <SectionLabel gold>Premium People Development · Est. {SITE.founded}</SectionLabel>
-          </div>
-        </Reveal>
+      {/* BOTTOM PANEL: editorial content — clean, no overlap */}
+      <div className="relative flex-1 bg-ink">
+        <div className="absolute inset-0 grid-bg opacity-[0.10]" />
+        <div className="container-x relative h-full flex flex-col justify-center py-10 md:py-14">
+          <Reveal>
+            <div className="flex items-center gap-3">
+              <span className="h-px w-10 bg-gold" />
+              <SectionLabel gold>Premium People Development · Est. {SITE.founded}</SectionLabel>
+            </div>
+          </Reveal>
 
-        <Reveal delay={0.12}>
-          <h1 className="font-display mt-7 leading-[0.9] text-balance text-[12vw] sm:text-[8vw] lg:text-[6.25rem] xl:text-[7rem] max-w-[18ch]">
-            EMPOWERING <span className="text-gold/95">PEOPLE.</span><br />
-            ELEVATING PERFORMANCE.
-          </h1>
-        </Reveal>
+          <div className="mt-5 grid lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+            <Reveal delay={0.12} className="lg:col-span-7">
+              <h1 className="font-display leading-[0.92] text-balance text-[10vw] sm:text-6xl lg:text-[5.25rem] xl:text-[6rem] max-w-[16ch]">
+                EMPOWERING <span className="text-gold/95">PEOPLE.</span>
+                <br />
+                ELEVATING PERFORMANCE.
+              </h1>
+            </Reveal>
 
-        <div className="mt-10 grid lg:grid-cols-12 gap-8 lg:gap-12 items-end">
-          <Reveal delay={0.25} className="lg:col-span-6">
-            <p className="text-base md:text-lg text-cream/85 leading-relaxed max-w-xl">
-              {SITE.name} is an Indonesian people-development consulting firm building high-performing leaders, sales talent, and organizations through integrated consulting, learning, coaching, and AI-supported digital solutions.
-            </p>
-            <Reveal delay={0.38}>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link to="/contact" className="group inline-flex items-center gap-2 rounded-full bg-gold text-ink px-6 py-3.5 text-sm font-medium hover:bg-cream transition-colors">
+            <Reveal delay={0.25} className="lg:col-span-5">
+              <p className="text-sm md:text-base text-cream/80 leading-relaxed max-w-md">
+                {SITE.name} is an Indonesian people-development consulting firm building high-performing leaders, sales talent, and organizations through integrated consulting, learning, coaching, and AI-supported digital solutions.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  to="/contact"
+                  className="group inline-flex items-center gap-2 rounded-full bg-gold text-ink px-5 py-3 text-sm font-medium hover:bg-cream transition-colors"
+                >
                   Schedule Strategic Consultation
                   <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
-                <Link to="/programs" className="inline-flex items-center gap-2 rounded-full border border-cream/30 px-6 py-3.5 text-sm hover:border-cream/70 hover:bg-cream/5 transition">
+                <Link
+                  to="/programs"
+                  className="inline-flex items-center gap-2 rounded-full border border-cream/30 px-5 py-3 text-sm hover:border-cream/70 hover:bg-cream/5 transition"
+                >
                   Explore Programs <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             </Reveal>
-          </Reveal>
+          </div>
 
-          <Reveal delay={0.45} className="lg:col-span-6 lg:justify-self-end w-full lg:max-w-md">
-            <div className="grid grid-cols-4 gap-px bg-cream/10 rounded-xl overflow-hidden border border-cream/10 backdrop-blur-md">
+          <Reveal delay={0.4}>
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-px bg-cream/10 rounded-xl overflow-hidden border border-cream/10">
               {[
                 ["Consulting", "Strategy"],
                 ["Learning", "Programs"],
                 ["Sales", "Performance"],
                 ["Digital", "AI-Ready"],
               ].map(([k, v]) => (
-                <div key={k} className="bg-ink/60 px-3 py-4 text-center">
+                <div key={k} className="bg-ink/70 px-4 py-3.5 text-center">
                   <p className="font-display text-sm tracking-widest text-gold uppercase">{k}</p>
-                  <p className="text-[10px] text-cream/60 uppercase tracking-wider mt-1">{v}</p>
+                  <p className="text-[10px] text-cream/60 uppercase tracking-wider mt-0.5">{v}</p>
                 </div>
               ))}
             </div>
