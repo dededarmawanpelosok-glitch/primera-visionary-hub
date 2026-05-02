@@ -44,42 +44,29 @@ function HomePage() {
 
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-ink text-cream min-h-[100vh] flex flex-col">
-      {/* TOP PANEL: hero image — fully visible, never cropped */}
-      <div className="relative w-full h-[58vh] md:h-[62vh] lg:h-[64vh] overflow-hidden bg-ink">
-        {/* Ambient blurred backdrop fills letterbox area */}
-        <motion.img
-          initial={{ scale: 1.1, opacity: 0 }}
-          animate={{ scale: 1.15, opacity: 0.45 }}
-          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-          src={heroImg}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover blur-2xl"
-        />
-        {/* Foreground full-fit image — preserves entire composition incl. wordmark */}
-        <motion.img
-          initial={{ scale: 1.04, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
-          src={heroImg}
-          alt="Primera Karya Sinergia leadership team in a strategic boardroom session"
-          className="relative h-full w-full object-contain object-center"
-        />
-        {/* Smooth blend into bottom panel */}
-        <div className="absolute inset-x-0 -bottom-px h-32 bg-gradient-to-b from-transparent to-ink" />
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink/60 to-transparent" />
+    <section className="relative isolate overflow-hidden bg-cream text-ink flex flex-col">
+      {/* TOP PANEL: hero image — fully visible, sharp, never cropped */}
+      <div className="relative w-full pt-20 md:pt-24 bg-cream">
+        <div className="container-x">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full overflow-hidden rounded-2xl border border-line bg-cream"
+          >
+            <img
+              src={heroImg}
+              alt="Primera Karya Sinergia leadership team in a strategic boardroom session"
+              className="block w-full h-auto object-contain"
+            />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
+          </motion.div>
+        </div>
       </div>
 
-      {/* Gold hairline divider */}
-      <div className="relative">
-        <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-      </div>
-
-      {/* BOTTOM PANEL: editorial content — clean, no overlap */}
-      <div className="relative flex-1 bg-ink">
-        <div className="absolute inset-0 grid-bg opacity-[0.10]" />
-        <div className="container-x relative h-full flex flex-col justify-center py-10 md:py-14">
+      {/* BOTTOM PANEL: editorial content */}
+      <div className="relative bg-cream">
+        <div className="container-x relative py-12 md:py-16">
           <Reveal>
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-gold" />
@@ -87,30 +74,30 @@ function Hero() {
             </div>
           </Reveal>
 
-          <div className="mt-5 grid lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+          <div className="mt-6 grid lg:grid-cols-12 gap-8 lg:gap-12 items-end">
             <Reveal delay={0.12} className="lg:col-span-7">
-              <h1 className="font-display leading-[0.92] text-balance text-[10vw] sm:text-6xl lg:text-[5.25rem] xl:text-[6rem] max-w-[16ch]">
-                EMPOWERING <span className="text-gold/95">PEOPLE.</span>
+              <h1 className="font-display leading-[0.95] text-balance text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] max-w-[18ch]">
+                EMPOWERING <span className="text-gold">PEOPLE.</span>
                 <br />
                 ELEVATING PERFORMANCE.
               </h1>
             </Reveal>
 
             <Reveal delay={0.25} className="lg:col-span-5">
-              <p className="text-sm md:text-base text-cream/80 leading-relaxed max-w-md">
+              <p className="text-sm md:text-base text-ink/70 leading-relaxed max-w-md">
                 {SITE.name} is an Indonesian people-development consulting firm building high-performing leaders, sales talent, and organizations through integrated consulting, learning, coaching, and AI-supported digital solutions.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   to="/contact"
-                  className="group inline-flex items-center gap-2 rounded-full bg-gold text-ink px-5 py-3 text-sm font-medium hover:bg-cream transition-colors"
+                  className="group inline-flex items-center gap-2 rounded-full bg-ink text-cream px-5 py-3 text-sm font-medium hover:bg-charcoal transition-colors"
                 >
                   Schedule Strategic Consultation
                   <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
                 <Link
                   to="/programs"
-                  className="inline-flex items-center gap-2 rounded-full border border-cream/30 px-5 py-3 text-sm hover:border-cream/70 hover:bg-cream/5 transition"
+                  className="inline-flex items-center gap-2 rounded-full border border-ink/30 px-5 py-3 text-sm text-ink hover:border-ink hover:bg-ink hover:text-cream transition"
                 >
                   Explore Programs <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -119,16 +106,16 @@ function Hero() {
           </div>
 
           <Reveal delay={0.4}>
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-px bg-cream/10 rounded-xl overflow-hidden border border-cream/10">
+            <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-px bg-line rounded-xl overflow-hidden border border-line">
               {[
                 ["Consulting", "Strategy"],
                 ["Learning", "Programs"],
                 ["Sales", "Performance"],
                 ["Digital", "AI-Ready"],
               ].map(([k, v]) => (
-                <div key={k} className="bg-ink/70 px-4 py-3.5 text-center">
-                  <p className="font-display text-sm tracking-widest text-gold uppercase">{k}</p>
-                  <p className="text-[10px] text-cream/60 uppercase tracking-wider mt-0.5">{v}</p>
+                <div key={k} className="bg-cream px-4 py-3.5 text-center">
+                  <p className="font-display text-sm tracking-widest text-ink uppercase">{k}</p>
+                  <p className="text-[10px] text-ink/55 uppercase tracking-wider mt-0.5">{v}</p>
                 </div>
               ))}
             </div>
