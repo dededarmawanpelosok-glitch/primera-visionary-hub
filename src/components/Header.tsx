@@ -29,15 +29,11 @@ export function Header() {
           <img
             src={logo}
             alt={`${SITE.short} logo`}
-            className={`h-7 md:h-8 w-auto object-contain transition-[filter] duration-500 ${
-              scrolled
-                ? ""
-                : "[filter:invert(1)_brightness(2)_drop-shadow(0_2px_8px_rgba(0,0,0,0.55))]"
-            }`}
+            className="h-7 md:h-9 w-auto object-contain"
           />
           <span
             className={`hidden sm:inline-block font-display tracking-[0.2em] text-[11px] uppercase transition-colors duration-500 ${
-              scrolled ? "text-ink/70" : "text-cream/90 [text-shadow:0_2px_8px_rgba(0,0,0,0.6)]"
+              scrolled ? "text-ink/70" : "text-ink/80"
             }`}
           >
             Primera Karya Sinergia
