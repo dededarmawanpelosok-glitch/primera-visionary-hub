@@ -45,30 +45,38 @@ function HomePage() {
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-ink text-cream min-h-[100vh] flex flex-col">
-      {/* Background image — anchored top so faces stay visible, dark base for contrast */}
+      {/* Hero image — full visible, no cropping of baked-in wordmark */}
       <motion.div
-        initial={{ scale: 1.08, opacity: 0 }}
+        initial={{ scale: 1.04, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
         className="absolute inset-0 -z-10"
       >
+        {/* Ambient backdrop layer (blurred, fills frame) */}
+        <img
+          src={heroImg}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover scale-110 blur-2xl opacity-40"
+        />
+        {/* Foreground full image — preserves entire composition incl. wordmark */}
         <img
           src={heroImg}
           alt="Primera Karya Sinergia leadership team in a strategic boardroom session"
-          className="h-full w-full object-cover object-[center_30%]"
+          className="relative h-full w-full object-contain object-center"
         />
-        {/* Layered cinematic overlays — heavy bottom for text legibility, soft top */}
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/45" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-ink/25 to-ink/55" />
-        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink via-ink/70 to-transparent" />
+        {/* Cinematic overlays for legibility of bottom content */}
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink via-ink/85 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink/80 to-transparent" />
       </motion.div>
 
-      {/* Subtle grain + grid for premium texture */}
-      <div className="absolute inset-0 grid-bg opacity-[0.18] -z-[5]" />
-      <div className="absolute inset-x-0 top-[58%] h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+      {/* Subtle grid for premium texture */}
+      <div className="absolute inset-0 grid-bg opacity-[0.10] -z-[5]" />
+      <div className="absolute inset-x-0 bottom-[42%] h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
 
-      {/* Content — single column, anchored bottom-left for clean editorial feel */}
-      <div className="container-x relative w-full flex-1 flex flex-col justify-end pb-14 md:pb-20 pt-32">
+      {/* Content — anchored bottom, below the image so nothing overlaps the baked wordmark */}
+      <div className="container-x relative w-full flex-1 flex flex-col justify-end pb-14 md:pb-16 pt-28">
         <Reveal>
           <div className="flex items-center gap-3">
             <span className="h-px w-10 bg-gold" />
