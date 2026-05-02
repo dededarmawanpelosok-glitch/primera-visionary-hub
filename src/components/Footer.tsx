@@ -49,19 +49,10 @@ export function Footer() {
 
         <div className="gold-line my-12 opacity-60" />
 
-        {/* Oversized watermark */}
-        <div className="relative">
-          <div
-            className="font-display text-[22vw] leading-none tracking-tight text-cream/[0.05] select-none pointer-events-none text-center"
-            aria-hidden
-          >
-            PRIMERA
-          </div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <p className="font-serif-italic text-2xl md:text-3xl text-cream/90 text-center max-w-2xl text-balance">
-              Empowering People. Elevating Performance.
-            </p>
-          </div>
+        <div className="text-center py-4">
+          <p className="font-serif-italic text-2xl md:text-3xl text-cream/90 text-balance">
+            Empowering People. Elevating Performance.
+          </p>
         </div>
 
         <div className="mt-12 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-cream/60">
