@@ -1,123 +1,137 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ArrowRight, Users, Target, Compass, Lightbulb, Briefcase, Cpu, CheckCircle2, ExternalLink, Plus, Minus, Phone } from "lucide-react";
+import {
+  ArrowUpRight, ArrowRight, Users, Lightbulb, Compass, Target, Briefcase, Cpu,
+  CheckCircle2, ExternalLink, Phone, Calendar, BarChart3, Shield, Sparkles,
+  ChevronRight, MessageCircle, Award, Zap,
+} from "lucide-react";
 import { useState } from "react";
 import heroImg from "@/assets/hero-consulting.jpg";
 import impactImg from "@/assets/impact-workshop.jpg";
-import crmImg from "@/assets/crm-act-context.jpg";
 import programsImg from "@/assets/programs-leadership.jpg";
-import { SITE, SERVICES, PROGRAM_CATEGORIES, INDUSTRIES, FAQ, TRUST_STRIP, LEADERSHIP, CREDENTIALS } from "@/lib/site";
+import {
+  SITE, SERVICES, PROBLEMS, IMPACT_STEPS, PROGRAM_CATEGORIES, INDUSTRY_CLIENTS,
+  LEADERSHIP, CREDENTIALS, INSIGHTS, TRUST_STRIP,
+} from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Primera Karya Sinergia — Empowering People. Elevating Performance." },
-      { name: "description", content: "Premium Indonesian people development consulting firm. Leadership, sales, talent assessment, and AI-supported learning that drives measurable business performance." },
-      { property: "og:title", content: "Primera Karya Sinergia" },
-      { property: "og:description", content: "Empowering People. Elevating Performance." },
+      { title: "Primera Karya Sinergia | People Development & Business Consulting" },
+      { name: "description", content: "Primera Karya Sinergia helps organizations grow through practical, relevant, and impactful learning experiences in leadership, sales capability, talent development, digital learning, and performance transformation." },
+      { property: "og:title", content: "Primera Karya Sinergia — Empowering People. Elevating Performance." },
+      { property: "og:description", content: "Premium Indonesian people development and business consulting firm." },
     ],
   }),
   component: HomePage,
 });
 
-const SERVICE_ICONS = [Users, Lightbulb, Compass, Target, Briefcase, Cpu];
+const SERVICE_ICONS = [Users, Sparkles, Target, Compass, Briefcase, Cpu];
 
 function HomePage() {
   return (
     <>
       <Hero />
       <TrustStrip />
-      <Services />
-      <Impact />
-      <Programs />
+      <WhatWeDo />
+      <ProblemsWeSolve />
+      <HowWeDeliver />
+      <WhyPrimera />
+      <FeaturedPrograms />
       <CrmAct />
-      <Industries />
-      <Leadership />
-      <Metrics />
-      <FaqSection />
-      <ContactCta />
+      <ClientsPartners />
+      <LeadershipPreview />
+      <Insights />
+      <FinalCta />
     </>
   );
 }
 
+/* ============ SECTION 1: HERO ============ */
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-cream text-ink flex flex-col">
-      {/* TOP PANEL: hero image — fully visible, sharp, never cropped */}
-      <div className="relative w-full pt-20 md:pt-24 bg-cream">
-        <div className="container-x">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full overflow-hidden rounded-2xl border border-line bg-cream"
-          >
-            <img
-              src={heroImg}
-              alt="Primera Karya Sinergia leadership team in a strategic boardroom session"
-              className="block w-full h-auto object-contain"
-            />
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
-          </motion.div>
-        </div>
-      </div>
+    <section className="relative isolate overflow-hidden bg-gradient-to-br from-soft via-white to-soft pt-24 md:pt-28 pb-16 md:pb-24">
+      <div className="absolute inset-0 grid-bg-light opacity-40" />
+      <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-gold/10 blur-3xl" />
+      <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-navy/5 blur-3xl" />
 
-      {/* BOTTOM PANEL: editorial content */}
-      <div className="relative bg-cream">
-        <div className="container-x relative py-12 md:py-16">
-          <Reveal>
-            <div className="flex items-center gap-3">
-              <span className="h-px w-10 bg-gold" />
-              <SectionLabel gold>Premium People Development · Est. {SITE.founded}</SectionLabel>
+      <div className="container-x relative">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <Reveal className="lg:col-span-7">
+            <div className="inline-flex items-center gap-2 rounded-full border border-navy/10 bg-white/70 backdrop-blur px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] text-navy/70 font-semibold">
+              <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+              People Development · Business Consulting · Est. {SITE.founded}
+            </div>
+            <h1 className="font-display mt-6 text-navy leading-[0.98] text-balance text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-extrabold">
+              Empowering <span className="text-gold">People.</span>
+              <br />
+              Elevating <span className="bg-gradient-to-r from-navy via-charcoal to-navy bg-clip-text text-transparent">Performance.</span>
+            </h1>
+            <p className="mt-7 text-navy/70 leading-relaxed max-w-xl text-base md:text-lg">
+              {SITE.name} helps organizations grow through practical, relevant, and impactful learning experiences — from leadership and soft skills to sales capability, talent development, and digital-supported performance transformation.
+            </p>
+            <p className="mt-4 font-serif-italic text-navy/60 text-base max-w-xl">
+              We believe that when learning becomes part of culture, growth becomes a way of life.
+            </p>
+
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link to="/services" className="group inline-flex items-center gap-2 rounded-full bg-navy text-white px-6 py-3.5 text-sm font-semibold hover:bg-charcoal hover:-translate-y-0.5 transition shadow-lg shadow-navy/20">
+                Explore What We Do <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+              </Link>
+              <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border-2 border-navy/15 bg-white text-navy px-6 py-3.5 text-sm font-semibold hover:border-gold hover:text-gold transition">
+                Schedule Strategic Consultation <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            <div className="mt-10 flex flex-wrap gap-2">
+              {["Leadership Development", "Sales Capability", "Talent Assessment", "Digital Learning", "CRM ACT"].map((t) => (
+                <span key={t} className="inline-flex items-center gap-1.5 rounded-full bg-white border border-navy/10 px-3.5 py-1.5 text-[11px] uppercase tracking-wider text-navy/75 font-medium">
+                  <span className="h-1 w-1 rounded-full bg-gold" />{t}
+                </span>
+              ))}
             </div>
           </Reveal>
 
-          <div className="mt-6 grid lg:grid-cols-12 gap-8 lg:gap-12 items-end">
-            <Reveal delay={0.12} className="lg:col-span-7">
-              <h1 className="font-display leading-[0.95] text-balance text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] max-w-[18ch]">
-                EMPOWERING <span className="text-gold">PEOPLE.</span>
-                <br />
-                ELEVATING PERFORMANCE.
-              </h1>
-            </Reveal>
+          <Reveal delay={0.2} className="lg:col-span-5">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-br from-gold/20 via-transparent to-navy/10 rounded-[2rem] blur-xl" />
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                className="relative overflow-hidden rounded-3xl border border-navy/10 shadow-2xl shadow-navy/15"
+              >
+                <img src={heroImg} alt="Primera leadership team facilitating an Indonesian corporate workshop" className="w-full h-auto object-cover" />
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+              </motion.div>
 
-            <Reveal delay={0.25} className="lg:col-span-5">
-              <p className="text-sm md:text-base text-ink/70 leading-relaxed max-w-md">
-                {SITE.name} is an Indonesian people-development consulting firm building high-performing leaders, sales talent, and organizations through integrated consulting, learning, coaching, and AI-supported digital solutions.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  to="/contact"
-                  className="group inline-flex items-center gap-2 rounded-full bg-ink text-cream px-5 py-3 text-sm font-medium hover:bg-charcoal transition-colors"
-                >
-                  Schedule Strategic Consultation
-                  <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
-                <Link
-                  to="/programs"
-                  className="inline-flex items-center gap-2 rounded-full border border-ink/30 px-5 py-3 text-sm text-ink hover:border-ink hover:bg-ink hover:text-cream transition"
-                >
-                  Explore Programs <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal delay={0.4}>
-            <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-px bg-line rounded-xl overflow-hidden border border-line">
-              {[
-                ["Consulting", "Strategy"],
-                ["Learning", "Programs"],
-                ["Sales", "Performance"],
-                ["Digital", "AI-Ready"],
-              ].map(([k, v]) => (
-                <div key={k} className="bg-cream px-4 py-3.5 text-center">
-                  <p className="font-display text-sm tracking-widest text-ink uppercase">{k}</p>
-                  <p className="text-[10px] text-ink/55 uppercase tracking-wider mt-0.5">{v}</p>
+              {/* floating credibility badge */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6, duration: 0.8 }}
+                className="absolute -bottom-6 -left-4 md:-left-8 bg-white rounded-2xl border border-navy/10 shadow-xl p-4 max-w-[200px]"
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-gold to-orange flex items-center justify-center">
+                    <Award className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-wider text-navy/60 font-semibold">Certified</p>
+                    <p className="font-display text-sm text-navy font-bold">CFP® · QWM · CRGP</p>
+                  </div>
                 </div>
-              ))}
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.75, duration: 0.8 }}
+                className="absolute -top-4 -right-3 md:-right-6 bg-navy text-white rounded-2xl shadow-xl p-3.5 flex items-center gap-2.5"
+              >
+                <BarChart3 className="h-5 w-5 text-gold" />
+                <div>
+                  <p className="text-[9px] uppercase tracking-wider text-gold font-semibold">Evaluation</p>
+                  <p className="font-display text-sm font-bold">Level 1–4</p>
+                </div>
+              </motion.div>
             </div>
           </Reveal>
         </div>
@@ -128,11 +142,11 @@ function Hero() {
 
 function TrustStrip() {
   return (
-    <section className="bg-cream py-6 border-y border-line overflow-hidden">
+    <section className="bg-navy text-white py-5 border-y border-gold/20 overflow-hidden">
       <div className="flex gap-12 marquee whitespace-nowrap">
         {[...TRUST_STRIP, ...TRUST_STRIP, ...TRUST_STRIP].map((t, i) => (
-          <span key={i} className="eyebrow text-ink/60 flex items-center gap-12">
-            {t}<span className="h-1 w-1 rounded-full bg-gold" />
+          <span key={i} className="eyebrow text-white/80 flex items-center gap-12">
+            {t}<span className="h-1.5 w-1.5 rounded-full bg-gold" />
           </span>
         ))}
       </div>
@@ -140,336 +154,81 @@ function TrustStrip() {
   );
 }
 
-function Services() {
+/* ============ SECTION 2: WHAT WE DO ============ */
+function WhatWeDo() {
   return (
-    <section id="services" className="bg-cream py-24 md:py-32">
+    <section id="what-we-do" className="bg-white py-24 md:py-32">
       <div className="container-x">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
-          <div className="lg:col-span-4">
-            <Reveal>
-              <SectionLabel>Services</SectionLabel>
-              <h2 className="font-display text-5xl md:text-6xl mt-6 leading-[0.95]">What we do</h2>
-              <p className="mt-6 text-ink/70 leading-relaxed">
-                We partner with organizations to design, build, and scale people capabilities that improve leadership, sales performance, collaboration, and business execution.
-              </p>
-              <Link to="/services" className="mt-8 inline-flex items-center gap-2 rounded-full bg-ink text-cream px-5 py-2.5 text-sm">
-                Explore all services <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Reveal>
-          </div>
-
-          <div className="lg:col-span-8 grid sm:grid-cols-2 gap-px bg-line">
-            {SERVICES.map((s, i) => {
-              const Icon = SERVICE_ICONS[i];
-              return (
-                <Reveal key={s.slug} delay={i * 0.05}>
-                  <Link to="/services" className="group block bg-cream p-6 lg:p-8 h-full lift hover:bg-white">
-                    <div className="flex items-center justify-between">
-                      <div className="h-11 w-11 rounded-xl bg-ink text-cream flex items-center justify-center group-hover:bg-gold group-hover:text-ink transition">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <ArrowUpRight className="h-4 w-4 text-ink/40 group-hover:text-ink group-hover:rotate-12 transition" />
-                    </div>
-                    <h3 className="mt-6 font-display text-xl tracking-wide uppercase">{s.title}</h3>
-                    <p className="mt-3 text-sm text-ink/65 leading-relaxed">{s.body}</p>
-                    <span className="mt-5 inline-block text-xs underline underline-offset-4 decoration-ink/30 group-hover:decoration-ink">Learn more</span>
-                  </Link>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Impact() {
-  const steps = [
-    { n: "01", t: "Diagnose", d: "Understand business challenges, people gaps, role needs, and performance targets." },
-    { n: "02", t: "Design", d: "Build contextual learning journeys aligned with culture and business goals." },
-    { n: "03", t: "Deliver", d: "Facilitate practical, experiential, action-oriented programs." },
-    { n: "04", t: "Reinforce", d: "Follow up with coaching, review, and behavior tracking." },
-    { n: "05", t: "Measure", d: "Evaluate learning impact up to Level 4 using performance indicators." },
-  ];
-  return (
-    <section className="relative isolate overflow-hidden bg-ink text-cream py-24 md:py-32 grain">
-      <div className="absolute inset-0 grid-bg opacity-50" />
-      <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-gold/10 blur-3xl" />
-
-      <div className="container-x relative">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl mx-auto text-center">
           <Reveal>
-            <SectionLabel gold>Method</SectionLabel>
-            <h2 className="font-display text-5xl md:text-7xl mt-6 leading-[0.95]">How we create impact</h2>
-            <p className="mt-6 text-cream/70 max-w-2xl leading-relaxed">
-              We connect learning, behavior, execution, and performance into one measurable development journey.
+            <SectionLabel gold>What We Do</SectionLabel>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mt-5 leading-[1.05] text-navy font-extrabold">
+              Practical learning and consulting solutions
+            </h2>
+            <p className="mt-6 text-navy/65 leading-relaxed text-lg">
+              Designed to build people capability, improve performance, and create measurable business impact — across six integrated practice areas.
             </p>
           </Reveal>
         </div>
 
-        <div className="mt-16 grid lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-7 space-y-px">
-            {steps.map((s, i) => (
-              <Reveal key={s.n} delay={i * 0.06}>
-                <div className="group flex gap-6 py-6 border-t border-cream/10 first:border-t hover:bg-cream/[0.03] -mx-4 px-4 transition">
-                  <div className="font-display text-gold/80 text-xl w-12">{s.n}</div>
-                  <div className="flex-1">
-                    <h3 className="font-display text-2xl uppercase tracking-wide">{s.t}</h3>
-                    <p className="mt-2 text-cream/70 max-w-xl">{s.d}</p>
+        <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {SERVICES.map((s, i) => {
+            const Icon = SERVICE_ICONS[i];
+            return (
+              <Reveal key={s.slug} delay={i * 0.05}>
+                <Link to="/services" className="group relative block rounded-2xl bg-white border border-navy/10 p-7 h-full lift hover:border-gold/40 hover:shadow-xl hover:shadow-navy/5 overflow-hidden">
+                  <div className="absolute -top-12 -right-12 h-32 w-32 rounded-full bg-gold/0 group-hover:bg-gold/10 blur-2xl transition-all duration-500" />
+                  <div className="relative">
+                    <div className="h-12 w-12 rounded-xl bg-soft border border-navy/10 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition">
+                      <Icon className="h-5 w-5 text-navy" />
+                    </div>
+                    <h3 className="mt-5 font-display text-lg text-navy font-bold leading-snug">{s.title}</h3>
+                    <p className="mt-3 text-sm text-navy/65 leading-relaxed">{s.body}</p>
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-gold">
+                      View Programs <ChevronRight className="h-3.5 w-3.5" />
+                    </span>
                   </div>
-                  <ArrowRight className="h-5 w-5 text-cream/40 mt-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition" />
-                </div>
+                </Link>
               </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={0.2} className="lg:col-span-5 lg:sticky lg:top-28">
-            <div className="relative tilt-3d">
-              <div className="overflow-hidden rounded-3xl border border-cream/10">
-                <img src={impactImg} alt="Indonesian facilitator leading a workshop" className="w-full h-[520px] object-cover" loading="lazy" />
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-cream text-ink rounded-2xl p-5 max-w-[220px] shadow-2xl">
-                <p className="eyebrow text-ink/60">Evaluation</p>
-                <p className="font-display text-2xl mt-1">Level 1–4</p>
-                <p className="text-xs text-ink/60 mt-1">Reaction → Learning → Behavior → Results</p>
-              </div>
-              <div className="absolute -top-4 -right-4 h-24 w-24 rounded-full bg-gold/30 blur-2xl float-y" />
-            </div>
-          </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
-function Programs() {
+/* ============ SECTION 3: PROBLEMS WE SOLVE ============ */
+function ProblemsWeSolve() {
   return (
-    <section id="programs" className="bg-cream py-24 md:py-32">
+    <section className="bg-soft py-24 md:py-32">
       <div className="container-x">
-        <div className="grid lg:grid-cols-12 gap-10 items-end">
-          <Reveal className="lg:col-span-8">
-            <SectionLabel>Programs</SectionLabel>
-            <h2 className="font-display text-5xl md:text-7xl mt-6 leading-[0.95] max-w-3xl">
-              Programs built for real business performance
+        <div className="max-w-3xl">
+          <Reveal>
+            <SectionLabel>Problems We Solve</SectionLabel>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mt-5 leading-[1.05] text-navy font-extrabold">
+              Learning that solves real performance challenges
             </h2>
-          </Reveal>
-          <Reveal delay={0.1} className="lg:col-span-4 lg:text-right">
-            <Link to="/programs" className="inline-flex items-center gap-2 rounded-full border border-ink px-5 py-2.5 text-sm hover:bg-ink hover:text-cream transition">
-              View all programs <ArrowRight className="h-4 w-4" />
-            </Link>
+            <p className="mt-6 text-navy/65 leading-relaxed text-lg">
+              Organizations don't need training for the sake of training. They need solutions that move the business forward.
+            </p>
           </Reveal>
         </div>
 
-        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {PROGRAM_CATEGORIES.map((c, i) => (
-            <Reveal key={c.slug} delay={i * 0.05}>
-              <div className="group relative tilt-3d h-full rounded-2xl bg-white border border-line p-7 lift hover:border-ink/30 overflow-hidden">
-                <div className="absolute top-0 right-0 h-24 w-24 bg-gold/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition" />
-                <p className="eyebrow text-ink/50">Series</p>
-                <h3 className="mt-3 font-display text-2xl tracking-wide uppercase leading-tight">{c.title}</h3>
-                <p className="mt-3 text-sm text-ink/65 italic">{c.tagline}</p>
-                <ul className="mt-5 space-y-2 text-sm text-ink/75">
-                  {c.items.slice(0, 4).map((item) => (
-                    <li key={item} className="flex gap-2"><span className="text-gold">›</span>{item}</li>
-                  ))}
-                  <li className="text-xs text-ink/50">+ {c.items.length - 4} more</li>
-                </ul>
-              </div>
-            </Reveal>
-          ))}
-          <Reveal delay={0.3}>
-            <Link to="/programs" className="group relative h-full rounded-2xl bg-ink text-cream p-7 flex flex-col justify-between overflow-hidden lift">
-              <div>
-                <p className="eyebrow text-gold">Catalog</p>
-                <h3 className="mt-3 font-display text-3xl uppercase leading-tight">Explore every program</h3>
-                <p className="mt-3 text-sm text-cream/70">50+ programs across leadership, sales, soft skills, talent, and facilitator development.</p>
-              </div>
-              <span className="mt-6 inline-flex items-center gap-2 text-sm">View catalog <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></span>
-              <img src={programsImg} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-20 group-hover:opacity-30 transition" loading="lazy" />
-            </Link>
-          </Reveal>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CrmAct() {
-  return (
-    <section className="relative isolate overflow-hidden bg-navy text-cream py-24 md:py-32 grain">
-      <div className="absolute inset-0 grid-bg opacity-50" />
-      <div className="absolute top-1/2 right-0 h-[500px] w-[500px] rounded-full bg-gold/15 blur-3xl -translate-y-1/2 translate-x-1/3" />
-
-      <div className="container-x relative">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-6">
-            <Reveal>
-              <SectionLabel gold>Featured Digital Solution</SectionLabel>
-              <h2 className="font-display text-6xl md:text-8xl mt-6 leading-[0.9]">
-                CRM <span className="text-gold">ACT</span>
-              </h2>
-              <p className="mt-4 text-xl md:text-2xl text-cream/80 font-display tracking-wide uppercase">
-                AI-Powered Mobile Banking Sales Execution CRM
-              </p>
-              <p className="mt-6 text-cream/75 leading-relaxed max-w-lg">
-                CRM ACT helps banks control sales execution from daily field activity to management decision — powered by ACT methodology, mobile visibility, and governed AI intelligence.
-              </p>
-
-              <div className="mt-8 grid grid-cols-3 gap-4">
-                {[
-                  ["A", "Action Daily"],
-                  ["C", "Control Activity"],
-                  ["T", "Track Progress"],
-                ].map(([k, v]) => (
-                  <div key={k} className="rounded-xl border border-cream/15 bg-cream/[0.04] p-4">
-                    <div className="font-display text-3xl text-gold">{k}</div>
-                    <p className="text-xs mt-1 text-cream/70 uppercase tracking-wider">{v}</p>
+        <div className="mt-16 grid md:grid-cols-2 gap-5">
+          {PROBLEMS.map((p, i) => (
+            <Reveal key={p.p} delay={i * 0.05}>
+              <div className="group rounded-2xl bg-white border border-navy/10 p-7 h-full lift hover:border-gold/50">
+                <div className="flex items-start gap-4">
+                  <div className="shrink-0 mt-1 font-display text-gold text-2xl font-extrabold w-9">0{i + 1}</div>
+                  <div>
+                    <p className="font-display text-base md:text-lg text-navy font-bold leading-snug">{p.p}</p>
+                    <div className="mt-3 pt-3 border-t border-dashed border-navy/15">
+                      <p className="text-[10px] uppercase tracking-wider text-gold font-semibold mb-2">Our Approach</p>
+                      <p className="text-sm text-navy/70 leading-relaxed">{p.s}</p>
+                    </div>
                   </div>
-                ))}
-              </div>
-
-              <div className="mt-8 space-y-2 text-sm text-cream/80">
-                {["Banking-specific sales execution — not a generic contact CRM", "AI recommends, humans approve. RBAC, audit log, masking, SSO-ready", "Demo uses dummy data only"].map((t) => (
-                  <p key={t} className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-gold mt-0.5 shrink-0" />{t}</p>
-                ))}
-              </div>
-
-              <div className="mt-10 flex flex-wrap gap-3">
-                <a
-                  href={SITE.crmDemoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-full bg-gold text-ink px-6 py-3.5 text-sm font-medium hover:bg-cream transition"
-                >
-                  View CRM ACT Demo for Bank BTN <ExternalLink className="h-4 w-4" />
-                </a>
-                <Link to="/products/crm-act" className="inline-flex items-center gap-2 rounded-full border border-cream/30 px-6 py-3.5 text-sm hover:border-cream/70 transition">
-                  Learn About CRM ACT <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link to="/contact" search={{ interest: "CRM ACT" } as never} className="inline-flex items-center gap-2 rounded-full border border-cream/30 px-6 py-3.5 text-sm hover:border-cream/70 transition">
-                  Discuss Pilot & Security
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal delay={0.2} className="lg:col-span-6">
-            <DashboardMock />
-          </Reveal>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function DashboardMock() {
-  const cards = [
-    { t: "Today Action", v: "12 / 18", sub: "Visits scheduled", c: "text-gold" },
-    { t: "Pipeline Health", v: "Rp 4.2 B", sub: "Hot · Warm · Cold", c: "text-cream" },
-    { t: "Follow-Up Due", v: "7", sub: "Past SLA", c: "text-orange" },
-    { t: "Coaching Queue", v: "5 RM", sub: "This week", c: "text-cream" },
-  ];
-  return (
-    <div className="relative tilt-3d">
-      <div className="rounded-3xl border border-cream/15 bg-gradient-to-br from-cream/[0.06] to-cream/[0.02] backdrop-blur-md p-6 shadow-2xl">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="eyebrow text-gold">Command Center</p>
-            <p className="font-display text-xl mt-1">Branch Performance · Today</p>
-          </div>
-          <div className="flex gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-cream/20" />
-            <span className="h-2.5 w-2.5 rounded-full bg-cream/20" />
-            <span className="h-2.5 w-2.5 rounded-full bg-gold" />
-          </div>
-        </div>
-
-        <div className="mt-6 grid grid-cols-2 gap-3">
-          {cards.map((c, i) => (
-            <motion.div
-              key={c.t}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="rounded-xl bg-ink/40 border border-cream/10 p-4"
-            >
-              <p className="text-[10px] uppercase tracking-wider text-cream/50">{c.t}</p>
-              <p className={`mt-2 font-display text-2xl ${c.c}`}>{c.v}</p>
-              <p className="text-[11px] text-cream/50 mt-0.5">{c.sub}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="mt-3 rounded-xl bg-ink/40 border border-cream/10 p-4">
-          <div className="flex items-center justify-between">
-            <p className="text-[10px] uppercase tracking-wider text-cream/50">Pipeline Movement</p>
-            <p className="text-[10px] text-gold">AI Insight</p>
-          </div>
-          <div className="mt-3 flex gap-1 h-12 items-end">
-            {[40, 65, 35, 80, 55, 90, 70, 60, 85, 75, 95, 50].map((h, i) => (
-              <div key={i} className="flex-1 rounded-sm bg-gradient-to-t from-gold/30 to-gold" style={{ height: `${h}%` }} />
-            ))}
-          </div>
-          <div className="mt-3 flex gap-2 flex-wrap">
-            {[["Hot", "bg-orange/20 text-orange"], ["Warm", "bg-gold/20 text-gold"], ["Cold", "bg-cream/10 text-cream/60"]].map(([l, c]) => (
-              <span key={l} className={`text-[10px] px-2 py-1 rounded-full ${c}`}>{l}</span>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-3 rounded-xl bg-ink/40 border border-cream/10 p-4 flex items-center gap-3">
-          <div className="h-9 w-9 rounded-full bg-gold/20 text-gold flex items-center justify-center text-xs">AI</div>
-          <div className="flex-1">
-            <p className="text-xs text-cream/80">Recommend coaching for 3 RMs in Jakarta-2 region — follow-up SLA below 60%</p>
-            <p className="text-[10px] text-cream/50 mt-0.5">Pending leader approval · Dummy data</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Floating phone mock */}
-      <div className="absolute -bottom-10 -left-8 hidden md:block">
-        <div className="float-y rounded-3xl border border-cream/20 bg-ink p-3 shadow-2xl w-44">
-          <div className="rounded-2xl bg-navy/80 p-3">
-            <p className="text-[9px] uppercase tracking-wider text-gold">Field App</p>
-            <p className="font-display text-sm mt-1 text-cream">Today's Visits</p>
-            {["BTN Cabang Sudirman", "BTN KCP Bellezza", "Prospek · PT Sinergi"].map((v) => (
-              <div key={v} className="mt-2 rounded-md bg-cream/5 p-2 text-[10px] text-cream/80">{v}</div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="pointer-events-none absolute -top-8 -right-8 h-32 w-32 rounded-full bg-gold/40 blur-3xl" />
-
-      <div className="mt-6 inline-flex items-center gap-2 text-xs text-cream/50">
-        <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
-        Illustrative dashboard. Demo uses dummy data only.
-      </div>
-    </div>
-  );
-}
-
-function Industries() {
-  return (
-    <section className="bg-cream py-24 md:py-32">
-      <div className="container-x">
-        <Reveal>
-          <SectionLabel>Industries</SectionLabel>
-          <h2 className="font-display text-5xl md:text-7xl mt-6 leading-[0.95] max-w-3xl">
-            Built for Indonesian business realities
-          </h2>
-        </Reveal>
-
-        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {INDUSTRIES.map((ind, i) => (
-            <Reveal key={ind.title} delay={i * 0.05}>
-              <div className="group relative overflow-hidden rounded-2xl bg-white border border-line p-7 h-full lift hover:border-ink/30">
-                <div className="absolute -bottom-10 -right-10 h-32 w-32 rounded-full bg-gold/10 blur-2xl opacity-0 group-hover:opacity-100 transition" />
-                <div className="h-px w-10 bg-gold mb-6" />
-                <h3 className="font-display text-xl uppercase tracking-wide">{ind.title}</h3>
-                <p className="mt-3 text-sm text-ink/65 leading-relaxed">{ind.body}</p>
+                </div>
               </div>
             </Reveal>
           ))}
@@ -479,44 +238,95 @@ function Industries() {
   );
 }
 
-function Leadership() {
+/* ============ SECTION 4: HOW WE DELIVER IMPACT ============ */
+function HowWeDeliver() {
   return (
-    <section className="bg-charcoal text-cream py-24 md:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 grid-bg opacity-30" />
+    <section className="relative isolate overflow-hidden bg-navy text-white py-24 md:py-32">
+      <div className="absolute inset-0 grid-bg opacity-40" />
+      <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-gold/10 blur-3xl" />
+      <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-orange/10 blur-3xl" />
+
       <div className="container-x relative">
         <div className="max-w-3xl">
           <Reveal>
-            <SectionLabel gold>Leadership</SectionLabel>
-            <h2 className="font-display text-5xl md:text-6xl mt-6 leading-[0.95]">
-              Guided by certified practitioners and senior business advisors
+            <SectionLabel gold>How We Deliver Impact</SectionLabel>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mt-5 leading-[1.05] font-extrabold">
+              From learning to <span className="text-gold">performance impact</span>
             </h2>
+            <p className="mt-6 text-white/70 leading-relaxed text-lg">
+              A structured learning process before, during, and after training — with comprehensive evaluation to ensure measurable performance impact.
+            </p>
           </Reveal>
         </div>
 
-        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {LEADERSHIP.map((p, i) => (
-            <Reveal key={p.name} delay={i * 0.05}>
-              <div className="rounded-2xl border border-cream/10 bg-cream/[0.03] p-6 h-full lift hover:border-gold/40">
-                <div className="flex items-center gap-4">
-                  <div className="h-14 w-14 rounded-full bg-gradient-to-br from-gold/30 to-gold/5 border border-gold/40 flex items-center justify-center font-display text-xl text-gold">
-                    {p.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
-                  </div>
-                  <div>
-                    <p className="eyebrow text-gold/80">{p.role}</p>
-                    <p className="font-display text-lg uppercase tracking-wide leading-tight mt-1">{p.name}</p>
-                  </div>
+        <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+          {IMPACT_STEPS.map((s, i) => (
+            <Reveal key={s.n} delay={i * 0.06}>
+              <div className="relative h-full rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-5 hover:border-gold/40 hover:bg-white/[0.07] transition-all">
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-gold text-xl font-extrabold">{s.n}</span>
+                  {i < IMPACT_STEPS.length - 1 && <ChevronRight className="h-4 w-4 text-gold/40 hidden xl:block" />}
                 </div>
-                <p className="mt-4 text-xs text-cream/60 uppercase tracking-wider">{p.credentials}</p>
-                <p className="mt-2 text-sm text-cream/75">{p.expertise}</p>
+                <h3 className="mt-3 font-display text-lg font-bold uppercase tracking-wide">{s.t}</h3>
+                <p className="mt-2 text-xs text-white/65 leading-relaxed">{s.d}</p>
               </div>
             </Reveal>
           ))}
         </div>
 
-        <Reveal delay={0.2}>
-          <div className="mt-14 flex flex-wrap gap-2">
+        <Reveal delay={0.3}>
+          <div className="mt-12 rounded-2xl border border-gold/20 bg-gold/5 p-6 flex flex-wrap items-center gap-4">
+            <BarChart3 className="h-6 w-6 text-gold shrink-0" />
+            <div className="flex-1 min-w-[240px]">
+              <p className="font-display text-base font-bold">Kirkpatrick Evaluation Level 1–4</p>
+              <p className="text-sm text-white/70">Reaction → Learning → Behavior → Business Results</p>
+            </div>
+            <Link to="/services" className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:text-white transition">
+              See Methodology <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ============ SECTION 5: WHY PRIMERA ============ */
+function WhyPrimera() {
+  const why = [
+    { icon: Compass, t: "End-to-End Solution", d: "From recruitment to continuous capability development — Primera delivers a structured learning process before, during, and after training, complete with comprehensive evaluation to ensure measurable impact on performance." },
+    { icon: Award, t: "Certified Team", d: "Licensed professionals with CFP®, Wealth Management, and certified soft skills practitioners — backed by deep BFSI and consulting experience." },
+    { icon: Zap, t: "Flexible & Adaptive", d: "Customizable programs that align with organizational culture and current business needs — practical, relevant, and immediately applicable." },
+  ];
+  return (
+    <section className="bg-white py-24 md:py-32">
+      <div className="container-x">
+        <div className="max-w-3xl">
+          <Reveal>
+            <SectionLabel>Why Choose Primera</SectionLabel>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mt-5 leading-[1.05] text-navy font-extrabold">
+              Built on three pillars of trust
+            </h2>
+          </Reveal>
+        </div>
+        <div className="mt-16 grid md:grid-cols-3 gap-5">
+          {why.map((w, i) => (
+            <Reveal key={w.t} delay={i * 0.08}>
+              <div className="relative h-full rounded-3xl bg-gradient-to-br from-soft to-white border border-navy/10 p-8 lift hover:border-gold/40 overflow-hidden">
+                <div className="absolute top-0 right-0 h-1 w-16 bg-gold rounded-bl-full" />
+                <div className="h-14 w-14 rounded-2xl bg-navy text-gold flex items-center justify-center">
+                  <w.icon className="h-6 w-6" />
+                </div>
+                <h3 className="mt-6 font-display text-xl text-navy font-bold">{w.t}</h3>
+                <p className="mt-3 text-navy/70 leading-relaxed text-sm">{w.d}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={0.3}>
+          <div className="mt-12 flex flex-wrap gap-2 justify-center">
             {CREDENTIALS.map((c) => (
-              <span key={c} className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-4 py-1.5 text-xs text-gold">
+              <span key={c} className="inline-flex items-center gap-2 rounded-full bg-soft border border-navy/10 px-4 py-2 text-xs text-navy font-medium">
                 <span className="h-1.5 w-1.5 rounded-full bg-gold" />{c}
               </span>
             ))}
@@ -527,94 +337,349 @@ function Leadership() {
   );
 }
 
-function Metrics() {
-  const m = [
-    { v: "50+", l: "Programs across 5 series" },
-    { v: "L1–4", l: "Kirkpatrick evaluation" },
-    { v: "BFSI", l: "Deep industry expertise" },
-    { v: "AI", l: "Supported learning & tools" },
+/* ============ SECTION 6: FEATURED PROGRAMS (TABS) ============ */
+function FeaturedPrograms() {
+  const [tab, setTab] = useState(0);
+  const cat = PROGRAM_CATEGORIES[tab];
+  return (
+    <section className="bg-soft py-24 md:py-32">
+      <div className="container-x">
+        <div className="grid lg:grid-cols-12 gap-10 items-end">
+          <Reveal className="lg:col-span-8">
+            <SectionLabel gold>Featured Programs</SectionLabel>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mt-5 leading-[1.05] text-navy font-extrabold">
+              50+ programs across five integrated series
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1} className="lg:col-span-4 lg:text-right">
+            <Link to="/programs" className="inline-flex items-center gap-2 rounded-full bg-navy text-white px-5 py-3 text-sm font-semibold hover:bg-charcoal transition">
+              View All Programs <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
+        </div>
+
+        <div className="mt-12 flex flex-wrap gap-2">
+          {PROGRAM_CATEGORIES.map((c, i) => (
+            <button
+              key={c.slug}
+              onClick={() => setTab(i)}
+              className={`px-4 py-2.5 rounded-full text-xs md:text-sm font-semibold transition ${
+                tab === i
+                  ? "bg-navy text-white shadow-lg shadow-navy/20"
+                  : "bg-white border border-navy/10 text-navy/70 hover:border-navy/30 hover:text-navy"
+              }`}
+            >
+              {c.title.replace(" Series", "")}
+            </button>
+          ))}
+        </div>
+
+        <motion.div
+          key={tab}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+          className="mt-8 rounded-3xl bg-white border border-navy/10 p-8 md:p-10 shadow-xl shadow-navy/5"
+        >
+          <div className="grid md:grid-cols-12 gap-8">
+            <div className="md:col-span-4">
+              <p className="font-serif-italic text-navy/60 text-base">{cat.tagline}</p>
+              <h3 className="mt-4 font-display text-2xl md:text-3xl text-navy font-extrabold leading-tight">{cat.title}</h3>
+              <Link to="/programs" className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:text-navy transition">
+                View Full Series <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
+            <div className="md:col-span-8 grid sm:grid-cols-2 gap-x-6 gap-y-3">
+              {cat.items.slice(0, 6).map((it) => (
+                <div key={it} className="flex items-start gap-2.5 py-1.5 border-b border-navy/5">
+                  <CheckCircle2 className="h-4 w-4 text-gold mt-0.5 shrink-0" />
+                  <span className="text-sm text-navy/80">{it}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ============ SECTION 7: CRM ACT ============ */
+function CrmAct() {
+  return (
+    <section className="relative isolate overflow-hidden bg-gradient-to-br from-navy via-navy to-charcoal text-white py-24 md:py-32">
+      <div className="absolute inset-0 grid-bg opacity-50" />
+      <div className="absolute top-1/2 right-0 h-[600px] w-[600px] rounded-full bg-gold/10 blur-3xl -translate-y-1/2 translate-x-1/3" />
+
+      <div className="container-x relative">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-7">
+            <Reveal>
+              <SectionLabel gold>Featured Digital Solution</SectionLabel>
+              <h2 className="font-display mt-5 text-5xl md:text-7xl leading-[0.95] font-extrabold">
+                CRM <span className="text-gold">ACT</span>
+              </h2>
+              <p className="mt-4 text-base md:text-lg font-semibold tracking-wide text-white/85 uppercase">
+                AI-Powered Mobile Banking Sales Execution CRM
+              </p>
+              <p className="mt-6 text-white/75 leading-relaxed max-w-xl">
+                CRM ACT helps banks control sales execution from daily field activity to management decision through ACT methodology, mobile visibility, and governed AI intelligence.
+              </p>
+
+              <div className="mt-8 grid grid-cols-3 gap-3">
+                {[
+                  ["A", "Action Daily"],
+                  ["C", "Control Activity"],
+                  ["T", "Track Progress"],
+                ].map(([k, v]) => (
+                  <div key={k} className="rounded-2xl border border-gold/20 bg-white/[0.04] p-4 text-center">
+                    <div className="font-display text-3xl text-gold font-extrabold">{k}</div>
+                    <p className="text-[10px] mt-1 text-white/70 uppercase tracking-wider font-semibold">{v}</p>
+                  </div>
+                ))}
+              </div>
+
+              <ul className="mt-8 space-y-2.5 text-sm text-white/80">
+                {[
+                  "Banking sales execution control — from daily activity to executive dashboard",
+                  "Mobile-first field-to-boardroom visibility for sales, leaders, and executives",
+                  "Governed AI recommendations — humans approve. RBAC, audit log, masking, SSO-ready",
+                  "Phased adoption: discovery → prototype → pilot → MVP → rollout",
+                ].map((t) => (
+                  <li key={t} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="h-4 w-4 text-gold mt-0.5 shrink-0" />{t}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-10 flex flex-wrap gap-3">
+                <Link to="/products/crm-act" className="group inline-flex items-center gap-2 rounded-full bg-gold text-navy px-6 py-3.5 text-sm font-bold hover:bg-white transition">
+                  Explore CRM ACT <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </Link>
+                <a href={SITE.crmDemoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3.5 text-sm font-semibold hover:border-gold hover:text-gold transition">
+                  Request Demo <ExternalLink className="h-4 w-4" />
+                </a>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.2} className="lg:col-span-5">
+            <DashboardMock />
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DashboardMock() {
+  const cards = [
+    { t: "Today Action", v: "12 / 18", sub: "Visits scheduled" },
+    { t: "Pipeline Health", v: "Rp 4.2 B", sub: "Hot · Warm · Cold" },
+    { t: "Follow-Up Due", v: "7", sub: "Past SLA" },
+    { t: "Coaching Queue", v: "5 RM", sub: "This week" },
   ];
   return (
-    <section className="bg-cream py-20 border-y border-line">
-      <div className="container-x grid grid-cols-2 lg:grid-cols-4 gap-8">
-        {m.map((x, i) => (
-          <Reveal key={x.l} delay={i * 0.08}>
-            <div>
-              <p className="font-display text-6xl md:text-7xl text-ink leading-none">{x.v}</p>
-              <p className="mt-3 text-sm text-ink/60">{x.l}</p>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function FaqSection() {
-  const [open, setOpen] = useState<number | null>(0);
-  return (
-    <section className="bg-cream py-24 md:py-32">
-      <div className="container-x grid lg:grid-cols-12 gap-12">
-        <div className="lg:col-span-4">
-          <Reveal>
-            <SectionLabel>FAQ</SectionLabel>
-            <h2 className="font-display text-5xl md:text-6xl mt-6 leading-[0.95]">Frequently asked questions</h2>
-            <p className="mt-6 text-ink/65">Can't find what you're looking for? <Link to="/contact" className="underline underline-offset-4">Talk to us.</Link></p>
-          </Reveal>
-        </div>
-        <div className="lg:col-span-8">
-          {FAQ.map((f, i) => {
-            const isOpen = open === i;
-            return (
-              <Reveal key={f.q} delay={i * 0.04}>
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full text-left py-5 border-b border-line flex items-start justify-between gap-4 group"
-                  aria-expanded={isOpen}
-                >
-                  <span className="font-display text-lg md:text-xl uppercase tracking-wide">{f.q}</span>
-                  <span className="h-8 w-8 rounded-full border border-line flex items-center justify-center shrink-0 group-hover:border-ink transition">
-                    {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
-                  </span>
-                </button>
-                <div className={`grid transition-all duration-500 ease-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-                  <div className="overflow-hidden">
-                    <p className="pb-6 pr-12 text-ink/70 leading-relaxed">{f.a}</p>
-                  </div>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ContactCta() {
-  return (
-    <section className="relative isolate overflow-hidden bg-ink text-cream py-24 md:py-32">
-      <div className="absolute inset-0 grid-bg opacity-40" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-gold/15 blur-3xl" />
-      <div className="container-x relative text-center">
-        <Reveal>
-          <SectionLabel gold>Let's build people impact</SectionLabel>
-          <h2 className="font-display text-6xl md:text-8xl mt-6 leading-[0.9] text-balance">
-            Ready to elevate your people?
-          </h2>
-          <p className="mt-6 text-cream/70 max-w-xl mx-auto">
-            Schedule a strategic consultation. We typically respond within two business hours.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3 justify-center">
-            <Link to="/contact" className="group inline-flex items-center gap-2 rounded-full bg-gold text-ink px-6 py-3.5 text-sm font-medium hover:bg-cream transition">
-              Schedule Consultation <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-            <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-cream/30 px-6 py-3.5 text-sm hover:border-cream/70 transition">
-              <Phone className="h-4 w-4" /> Chat on WhatsApp
-            </a>
+    <div className="relative">
+      <div className="absolute -inset-6 bg-gradient-to-br from-gold/20 via-transparent to-orange/10 rounded-[2rem] blur-2xl" />
+      <div className="relative rounded-3xl border border-white/15 bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-md p-6 shadow-2xl">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.22em] text-gold font-semibold">Command Center</p>
+            <p className="font-display text-lg mt-1 font-bold">Branch Performance · Today</p>
           </div>
+          <Shield className="h-5 w-5 text-gold" />
+        </div>
+        <div className="mt-6 grid grid-cols-2 gap-3">
+          {cards.map((c, i) => (
+            <motion.div
+              key={c.t}
+              initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="rounded-xl bg-navy/60 border border-white/10 p-4"
+            >
+              <p className="text-[10px] uppercase tracking-wider text-white/55 font-semibold">{c.t}</p>
+              <p className="mt-2 font-display text-2xl text-white font-bold">{c.v}</p>
+              <p className="text-[11px] text-white/55 mt-0.5">{c.sub}</p>
+            </motion.div>
+          ))}
+        </div>
+        <div className="mt-3 rounded-xl bg-navy/60 border border-white/10 p-4">
+          <div className="flex items-center justify-between">
+            <p className="text-[10px] uppercase tracking-wider text-white/55 font-semibold">Pipeline Movement</p>
+            <p className="text-[10px] text-gold font-semibold">AI Insight</p>
+          </div>
+          <div className="mt-3 flex gap-1 h-12 items-end">
+            {[40, 65, 35, 80, 55, 90, 70, 60, 85, 75, 95, 50].map((h, i) => (
+              <div key={i} className="flex-1 rounded-sm bg-gradient-to-t from-gold/30 to-gold" style={{ height: `${h}%` }} />
+            ))}
+          </div>
+        </div>
+        <div className="mt-3 rounded-xl bg-navy/60 border border-white/10 p-4 flex items-center gap-3">
+          <div className="h-9 w-9 rounded-full bg-gold/20 text-gold flex items-center justify-center text-[10px] font-bold">AI</div>
+          <p className="text-xs text-white/80 flex-1">Recommend coaching for 3 RMs · Pending leader approval · Dummy data</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ============ SECTION 8: CLIENTS & PARTNERS ============ */
+function ClientsPartners() {
+  return (
+    <section className="bg-white py-24 md:py-32">
+      <div className="container-x">
+        <div className="max-w-3xl mx-auto text-center">
+          <Reveal>
+            <SectionLabel>Clients & Partners</SectionLabel>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mt-5 leading-[1.05] text-navy font-extrabold">
+              Trusted by organizations across industries
+            </h2>
+            <p className="mt-6 text-navy/65 leading-relaxed text-lg">
+              From banking and insurance to telecommunications, SOEs, and corporate enterprises across Indonesia.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {INDUSTRY_CLIENTS.map((g, i) => (
+            <Reveal key={g.group} delay={i * 0.05}>
+              <div className="rounded-2xl bg-soft border border-navy/10 p-6 h-full hover:border-gold/40 transition">
+                <p className="font-display text-sm uppercase tracking-wider text-gold font-bold">{g.group}</p>
+                <div className="mt-4 flex flex-wrap gap-x-3 gap-y-2">
+                  {g.names.map((n) => (
+                    <span key={n} className="text-sm text-navy/75 font-medium after:content-['·'] after:ml-3 after:text-navy/30 last:after:hidden">{n}</span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={0.3}>
+          <p className="mt-10 text-center text-xs text-navy/50">
+            Logos and client names are displayed for portfolio and credibility purposes where permitted.
+          </p>
         </Reveal>
       </div>
     </section>
   );
 }
+
+/* ============ SECTION 9: LEADERSHIP PREVIEW ============ */
+function LeadershipPreview() {
+  const featured = LEADERSHIP.slice(0, 4);
+  return (
+    <section className="bg-soft py-24 md:py-32">
+      <div className="container-x">
+        <div className="grid lg:grid-cols-12 gap-10 items-end">
+          <Reveal className="lg:col-span-8">
+            <SectionLabel gold>Leadership & Facilitators</SectionLabel>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mt-5 leading-[1.05] text-navy font-extrabold">
+              Led by experienced practitioners and advisors
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1} className="lg:col-span-4 lg:text-right">
+            <Link to="/about#leadership" className="inline-flex items-center gap-2 rounded-full border-2 border-navy/15 bg-white text-navy px-5 py-3 text-sm font-semibold hover:border-gold hover:text-gold transition">
+              Meet Our Team <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
+        </div>
+
+        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {featured.map((p, i) => (
+            <Reveal key={p.name} delay={i * 0.06}>
+              <div className="rounded-2xl bg-white border border-navy/10 p-6 h-full lift hover:border-gold/40">
+                <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-navy to-charcoal text-gold flex items-center justify-center font-display text-xl font-extrabold">
+                  {p.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
+                </div>
+                <p className="mt-5 text-[10px] uppercase tracking-wider text-gold font-bold">{p.role}</p>
+                <p className="mt-1 font-display text-base text-navy font-bold leading-tight">{p.name}</p>
+                <p className="mt-3 text-[11px] text-navy/55 uppercase tracking-wider">{p.credentials}</p>
+                <p className="mt-2 text-sm text-navy/70 leading-relaxed">{p.expertise}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============ SECTION 11: INSIGHTS ============ */
+function Insights() {
+  return (
+    <section className="bg-white py-24 md:py-32">
+      <div className="container-x">
+        <div className="grid lg:grid-cols-12 gap-10 items-end">
+          <Reveal className="lg:col-span-8">
+            <SectionLabel>Latest Insights</SectionLabel>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mt-5 leading-[1.05] text-navy font-extrabold">
+              Thought leadership for people-driven growth
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1} className="lg:col-span-4 lg:text-right">
+            <Link to="/insights" className="inline-flex items-center gap-2 rounded-full bg-navy text-white px-5 py-3 text-sm font-semibold hover:bg-charcoal transition">
+              All Insights <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
+        </div>
+
+        <div className="mt-14 grid md:grid-cols-3 gap-5">
+          {INSIGHTS.slice(0, 3).map((a, i) => (
+            <Reveal key={a.slug} delay={i * 0.07}>
+              <Link to="/insights" className="group block rounded-2xl bg-soft border border-navy/10 p-7 h-full lift hover:border-gold/40">
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] uppercase tracking-wider font-bold text-gold">{a.category}</span>
+                  <span className="text-navy/30">·</span>
+                  <span className="text-[10px] uppercase tracking-wider text-navy/50">{a.read}</span>
+                </div>
+                <h3 className="mt-4 font-display text-xl text-navy font-bold leading-snug group-hover:text-gold transition">{a.title}</h3>
+                <p className="mt-3 text-sm text-navy/65 leading-relaxed">{a.excerpt}</p>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-navy">
+                  Read More <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
+                </span>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============ SECTION 12: FINAL CTA ============ */
+function FinalCta() {
+  return (
+    <section className="relative isolate overflow-hidden bg-navy text-white py-24 md:py-32">
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+      <div className="absolute inset-0 grid-bg opacity-40" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-gold/10 blur-3xl" />
+
+      <div className="container-x relative text-center max-w-3xl mx-auto">
+        <Reveal>
+          <SectionLabel gold>Let's Begin</SectionLabel>
+          <h2 className="font-display mt-5 text-5xl md:text-7xl leading-[0.98] font-extrabold text-balance">
+            Ready to elevate your <span className="text-gold">people performance?</span>
+          </h2>
+          <p className="mt-6 text-white/75 text-lg max-w-xl mx-auto leading-relaxed">
+            Let's design a practical, relevant, and measurable learning solution for your organization.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-3 justify-center">
+            <Link to="/contact" className="group inline-flex items-center gap-2 rounded-full bg-gold text-navy px-7 py-4 text-sm font-bold hover:bg-white transition">
+              <Calendar className="h-4 w-4" /> Schedule Strategic Consultation
+              <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+            <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-7 py-4 text-sm font-semibold hover:border-gold hover:text-gold transition">
+              <MessageCircle className="h-4 w-4" /> WhatsApp Primera
+            </a>
+          </div>
+          <p className="mt-8 text-xs text-white/50">Typical response within two business hours</p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+// keep `Phone` import used in case we reuse later
+void Phone; void Lightbulb;
