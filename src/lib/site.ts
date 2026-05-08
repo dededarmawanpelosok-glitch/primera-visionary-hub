@@ -2,27 +2,32 @@ export const SITE = {
   name: "Primera Karya Sinergia",
   short: "Primera",
   tagline: "Empowering People. Elevating Performance.",
-  positioning: "Premium People Development Consulting Firm",
+  positioning: "Business Management & People Development Consulting Firm",
   email: "info@prmrsinergia.com",
   phone: "+62 811 8675 004",
   whatsapp: "6281186750040",
   address:
-    "Infiniti Office, Bellezza BSA 1st Floor Unit 106, Jl. Letjen Soepeno, Grogol Utara, Kebayoran Lama, Jakarta Selatan",
+    "INFINITI OFFICE, BELLEZZA BSA 1st Floor Unit 106, Jl. Letjen Soepeno RT.004 RW.002, Grogol Utara, Kebayoran Lama, Jakarta Selatan, DKI Jakarta",
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=Bellezza+BSA+Office+Jl+Letjen+Soepeno+Jakarta+Selatan",
   crmDemoUrl: "https://demo-crm-btn-final.vercel.app/",
   founded: 2021,
 };
 
+export const CONTACTS = [
+  { name: "Oki T. Wikan", role: "Director", phone: "081381088910", email: "oki.wikan@prmrsinergia.com" },
+  { name: "Arike Agung", role: "Senior Advisor", phone: "08118675004", email: "arike.agung@prmrsinergia.com" },
+  { name: "Erica", role: "Client Relations", phone: "08111398880", email: "erica.naibaho@gmail.com" },
+];
+
 export const NAV = [
   { label: "Home", to: "/" as const },
-  { label: "About", to: "/about" as const },
-  { label: "Services", to: "/services" as const },
-  { label: "Programs", to: "/programs" as const },
+  { label: "About Us", to: "/about" as const },
+  { label: "What We Do", to: "/services" as const },
   { label: "Products", to: "/products" as const },
-  { label: "Impact", to: "/impact" as const },
+  { label: "Clients & Stories", to: "/clients" as const },
   { label: "Insights", to: "/insights" as const },
-  { label: "Contact", to: "/contact" as const },
+  { label: "Contact Us", to: "/contact" as const },
 ];
 
 export const VALUES = [
@@ -36,18 +41,36 @@ export const VALUES = [
 ];
 
 export const SERVICES = [
-  { slug: "recruitment", title: "Recruitment & Talent Assessment", body: "Behavioral interviewing, competency mapping, and assessment design that helps you hire smarter." },
-  { slug: "training", title: "Training & Workshop Programs", body: "Practical, experiential learning journeys with measurable evaluation up to Level 4." },
-  { slug: "leadership", title: "Leadership & Managerial Development", body: "From first-time managers to senior leaders driving people, performance, and purpose." },
-  { slug: "sales", title: "Sales Capability & Wealth Advisory", body: "BFSI-grade consultative selling, financial planning, and wealth advisory programs." },
-  { slug: "consulting", title: "Business Consulting & Distribution Strategy", body: "Strategy, sales operating models, and distribution effectiveness for Indonesian markets." },
-  { slug: "digital", title: "Digital Learning & AI Enablement", body: "AI-supported learning, facilitator enablement, and modern digital learning ecosystems." },
+  { slug: "leadership", title: "Leadership & Managerial Development", body: "Inspiring leaders who drive people, performance, and purpose." },
+  { slug: "soft-skills", title: "Soft Skills & Behavioral Excellence", body: "Empowering individuals to communicate, collaborate, and perform at their best." },
+  { slug: "sales", title: "Technical & Sales Capability", body: "Elevating sales professionals to become trusted advisors." },
+  { slug: "talent", title: "Talent Assessment & Recruitment", body: "Selecting, mapping, and growing the right talents for lasting impact." },
+  { slug: "facilitator", title: "Facilitator & Digital Learning Enablement", body: "Empowering facilitators and trainers to deliver learning with impact and innovation." },
+  { slug: "consulting", title: "Business Consulting & Performance Advisory", body: "Strategy, operating models, and distribution effectiveness for Indonesian markets." },
+];
+
+export const PROBLEMS = [
+  { p: "Leaders are promoted but not fully prepared to lead.", s: "Leadership and managerial programs that build clarity, accountability, coaching ability, and adaptive decision-making." },
+  { p: "Sales teams work hard, but performance is inconsistent.", s: "Sales capability and performance programs that strengthen consultative selling, pipeline discipline, advisory skill, and measurable productivity." },
+  { p: "Training happens, but behavior change is not measured.", s: "Learning-to-performance design with structured evaluation, follow-up, and business impact tracking." },
+  { p: "Talent decisions rely too much on intuition.", s: "Assessment, recruitment, competency mapping, and analytics-based talent development." },
+  { p: "Facilitators need modern digital learning capability.", s: "Facilitator enablement using experiential learning, AI tools, digital collaboration, and data-driven evaluation." },
+  { p: "Organizations need learning that fits culture and business reality.", s: "Customizable, relevant, and adaptive programs aligned with organizational context and current business needs." },
+];
+
+export const IMPACT_STEPS = [
+  { n: "01", t: "Assess", d: "Diagnose business challenges, role profiles, and people performance gaps." },
+  { n: "02", t: "Design", d: "Build contextual learning journeys aligned with culture and business goals." },
+  { n: "03", t: "Train", d: "Facilitate practical, experiential, and action-oriented programs." },
+  { n: "04", t: "Accredit", d: "Understanding and accreditation programs to certify capability." },
+  { n: "05", t: "Reinforce", d: "Follow-up programs, coaching cadence, and behavior tracking." },
+  { n: "06", t: "Measure", d: "Evaluation Level 1–4 — reaction, learning, behavior, and business impact." },
 ];
 
 export const PROGRAM_CATEGORIES = [
   {
     slug: "leadership",
-    title: "Leadership & Managerial",
+    title: "Leadership & Managerial Series",
     tagline: "Inspiring leaders who drive people, performance, and purpose.",
     items: [
       "Lead with Impact",
@@ -65,7 +88,7 @@ export const PROGRAM_CATEGORIES = [
   },
   {
     slug: "soft-skill",
-    title: "Soft Skill & Behavioral",
+    title: "Soft Skills & Behavioral Excellence Series",
     tagline: "Empowering individuals to communicate, collaborate, and perform at their best.",
     items: [
       "Communicate to Influence",
@@ -83,7 +106,7 @@ export const PROGRAM_CATEGORIES = [
   },
   {
     slug: "technical-sales",
-    title: "Technical & Sales Capability",
+    title: "Technical & Sales Capability Series",
     tagline: "Elevating sales professionals to become trusted advisors.",
     items: [
       "Consultative Selling Excellence",
@@ -100,7 +123,7 @@ export const PROGRAM_CATEGORIES = [
   },
   {
     slug: "talent-assessment",
-    title: "Talent Assessment & Recruitment",
+    title: "Talent Assessment & Recruitment Excellence Series",
     tagline: "Hiring smart and developing the right people for the right roles.",
     items: [
       "Assessment & Recruitment Excellence",
@@ -117,7 +140,7 @@ export const PROGRAM_CATEGORIES = [
   },
   {
     slug: "facilitator",
-    title: "Facilitator & Digital Learning",
+    title: "Facilitator & Digital Learning Enablement Series",
     tagline: "Enabling facilitators and L&D teams to deliver modern learning experiences.",
     items: [
       "Train the Trainer 5.0",
@@ -140,11 +163,11 @@ export const INDUSTRIES = [
   { title: "Telecommunications", body: "Frontline capability, leadership, and digital sales transformation." },
   { title: "State-Owned Enterprises", body: "Leadership pipeline, change leadership, and performance culture programs." },
   { title: "Manufacturing & FMCG", body: "Sales force effectiveness, distribution strategy, and supervisor capability." },
-  { title: "Sales & Distribution", body: "Activity management, coaching cadence, and territory performance discipline." },
+  { title: "Professional & Education", body: "Capability building for professional bodies and educational institutions." },
 ];
 
 export const FAQ = [
-  { q: "What does Primera Karya Sinergia do?", a: "We are a premium people development and business consulting firm helping organizations grow through their people — across recruitment, training, leadership, sales capability, talent assessment, facilitator development, and digital learning enablement." },
+  { q: "What does Primera Karya Sinergia do?", a: "We are a business management and people development consulting firm helping organizations grow through their people — across recruitment, training, leadership, sales capability, talent assessment, facilitator development, and digital learning enablement." },
   { q: "Can programs be customized for our organization?", a: "Yes. Every program is tailored to your business context, role profiles, and learning objectives — from short workshops to multi-month learning journeys." },
   { q: "Do you provide leadership and sales capability programs?", a: "Yes. Our Leadership & Managerial Series and Technical & Sales Capability Series are core practice areas, with deep BFSI and wealth advisory experience." },
   { q: "Can training impact be measured?", a: "Yes. We design Level 1–4 evaluation (Kirkpatrick) into every engagement — from reaction and learning to behavior change and business results." },
@@ -172,7 +195,7 @@ export const LEADERSHIP = [
   { name: "Tedi Irawan", role: "Lead Facilitator", credentials: "25 Years L&D · Happiness Enthusiast", expertise: "Train the Trainer · Experiential Learning" },
 ];
 
-export const CREDENTIALS = ["CFP®", "QWM", "CRGP", "ANZIIF", "AAAIK", "BFSI Expertise", "Wealth Management", "Leadership Coaching", "Level 1–4 Evaluation"];
+export const CREDENTIALS = ["CFP®", "QWM", "CRGP", "ANZIIF", "AAAIK", "BFSI Expertise", "Wealth Management", "Leadership Coaching", "Kirkpatrick Evaluation", "Digital Learning"];
 
 export const TRUST_STRIP = [
   "End-to-End People Development",
@@ -180,4 +203,13 @@ export const TRUST_STRIP = [
   "BFSI, Insurance & Sales Performance",
   "Measurable Impact (Evaluation Level 1–4)",
   "AI-Supported Learning & Digital Enablement",
+];
+
+export const INDUSTRY_CLIENTS = [
+  { group: "Banking & Financial Services", names: ["Bank BTN", "Bank Mandiri", "BRI", "BNI", "BCA", "CIMB Niaga"] },
+  { group: "Insurance", names: ["AIA", "Allianz", "Manulife", "Prudential", "Sun Life", "BNI Life"] },
+  { group: "Government / SOE", names: ["Pertamina", "Telkom", "Pelindo", "Angkasa Pura", "PLN", "Jasa Raharja"] },
+  { group: "Telecommunications", names: ["Telkomsel", "XL Axiata", "Indosat", "Smartfren"] },
+  { group: "Corporate / FMCG", names: ["Unilever", "Indofood", "Sinarmas", "Astra", "Wings Group"] },
+  { group: "Education / Professional", names: ["IBI Kesatuan", "FPSB Indonesia", "AAJI", "AAUI"] },
 ];
