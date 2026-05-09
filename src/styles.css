@@ -55,38 +55,38 @@
 :root {
   --radius: 0.75rem;
 
-  /* Brand — Primera V2 */
-  --ink: oklch(0.20 0.045 250);              /* deep navy as primary ink */
-  --charcoal: oklch(0.32 0.008 270);         /* #3F3F3F */
-  --navy: oklch(0.20 0.045 250);             /* #0A1628 */
-  --cream: oklch(0.985 0.003 90);            /* near white */
-  --soft: oklch(0.975 0.004 250);            /* #F7F8FA */
-  --gold: oklch(0.85 0.16 90);               /* #FFD700 */
-  --gold-soft: oklch(0.85 0.16 90 / 0.18);
-  --orange: oklch(0.70 0.19 40);             /* #FF6B35 */
-  --gray-premium: oklch(0.60 0 0);           /* #888 */
-  --line: oklch(0.20 0 0 / 0.10);
+  /* Brand — Primera V2 (Revised Premium Corporate Palette) */
+  --ink: #002D62;                            /* corporate deep blue (primary brand) */
+  --charcoal: #4A4A4A;                       /* charcoal gray */
+  --navy: #002D62;                           /* corporate deep blue */
+  --cream: #FFFFFF;                          /* white base */
+  --soft: #EAECEF;                           /* soft light gray */
+  --gold: #AF8A60;                           /* premium tan / gold beige */
+  --gold-soft: rgba(175, 138, 96, 0.18);
+  --orange: #7B1F1C;                         /* premium burgundy / deep maroon */
+  --gray-premium: #4A4A4A;
+  --line: rgba(74, 74, 74, 0.16);
 
   /* Shadcn semantic mapping (light) */
   --background: var(--cream);
-  --foreground: var(--ink);
-  --card: oklch(1 0 0);
-  --card-foreground: var(--ink);
-  --popover: oklch(1 0 0);
-  --popover-foreground: var(--ink);
-  --primary: var(--ink);
-  --primary-foreground: var(--cream);
-  --secondary: oklch(0.94 0.005 90);
-  --secondary-foreground: var(--ink);
-  --muted: oklch(0.94 0.005 90);
-  --muted-foreground: oklch(0.45 0 0);
+  --foreground: #4A4A4A;
+  --card: #FFFFFF;
+  --card-foreground: #4A4A4A;
+  --popover: #FFFFFF;
+  --popover-foreground: #4A4A4A;
+  --primary: var(--navy);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--soft);
+  --secondary-foreground: var(--navy);
+  --muted: var(--soft);
+  --muted-foreground: #4A4A4A;
   --accent: var(--gold);
-  --accent-foreground: var(--ink);
-  --destructive: oklch(0.58 0.24 27);
-  --destructive-foreground: oklch(0.99 0 0);
+  --accent-foreground: var(--navy);
+  --destructive: #7B1F1C;
+  --destructive-foreground: #FFFFFF;
   --border: var(--line);
-  --input: oklch(0.90 0 0);
-  --ring: var(--ink);
+  --input: rgba(74, 74, 74, 0.20);
+  --ring: var(--navy);
 }
 
 .dark {
