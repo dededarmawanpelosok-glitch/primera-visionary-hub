@@ -6,7 +6,7 @@ import {
   ChevronRight, MessageCircle, Award, Zap,
 } from "lucide-react";
 import { useState } from "react";
-import heroImg from "@/assets/hero-consulting.jpg";
+import heroImg from "@/assets/hero-corporate.jpg";
 import impactImg from "@/assets/impact-workshop.jpg";
 import programsImg from "@/assets/programs-leadership.jpg";
 import {
