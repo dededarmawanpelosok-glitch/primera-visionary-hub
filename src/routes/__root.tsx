@@ -1,4 +1,4 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent, Scripts, useLocation } from "@tanstack/react-router";
 import appCss from "../styles.css?url";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -49,10 +49,12 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  const loc = useLocation();
+  const isHome = loc.pathname === "/";
   return (
     <>
       <Header />
-      <main className="pt-16 md:pt-20"><Outlet /></main>
+      <main className={isHome ? "" : "pt-[88px] md:pt-[112px]"}><Outlet /></main>
       <Footer />
     </>
   );

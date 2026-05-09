@@ -6,7 +6,7 @@ import {
   ChevronRight, MessageCircle, Award, Zap,
 } from "lucide-react";
 import { useState } from "react";
-import heroImg from "@/assets/hero-consulting.jpg";
+import heroImg from "@/assets/hero-corporate.jpg";
 import impactImg from "@/assets/impact-workshop.jpg";
 import programsImg from "@/assets/programs-leadership.jpg";
 import {
@@ -52,90 +52,66 @@ function HomePage() {
 /* ============ SECTION 1: HERO ============ */
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-br from-soft via-white to-soft pt-24 md:pt-28 pb-16 md:pb-24">
-      <div className="absolute inset-0 grid-bg-light opacity-40" />
-      <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-gold/10 blur-3xl" />
-      <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-navy/5 blur-3xl" />
+    <section className="relative isolate overflow-hidden min-h-[88vh] md:min-h-[92vh] flex items-center pt-32 md:pt-36 pb-20 md:pb-28">
+      {/* Background image */}
+      <div className="absolute inset-0 -z-10">
+        <img
+          src={heroImg}
+          alt="Primera Karya Sinergia consulting team in a Jakarta strategic leadership session"
+          className="h-full w-full object-cover"
+          fetchPriority="high"
+        />
+        {/* Navy overlay for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/92 via-navy/80 to-navy/45" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-navy/40" />
+        <div className="absolute inset-0 grid-bg opacity-25" />
+        <div className="absolute -bottom-24 left-0 h-72 w-[40rem] rounded-full bg-gold/10 blur-3xl" />
+      </div>
 
       <div className="container-x relative">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          <Reveal className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 rounded-full border border-navy/10 bg-white/70 backdrop-blur px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] text-navy/70 font-semibold">
+        <div className="max-w-3xl text-white">
+          <Reveal>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur px-4 py-1.5 text-[10px] uppercase tracking-[0.24em] text-white/90 font-semibold">
               <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-              People Development · Business Consulting · Est. {SITE.founded}
-            </div>
-            <h1 className="font-display mt-6 text-navy leading-[0.98] text-balance text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-extrabold">
-              Empowering <span className="text-gold">People.</span>
-              <br />
-              Elevating <span className="bg-gradient-to-r from-navy via-charcoal to-navy bg-clip-text text-transparent">Performance.</span>
-            </h1>
-            <p className="mt-7 text-navy/70 leading-relaxed max-w-xl text-base md:text-lg">
-              {SITE.name} helps organizations grow through practical, relevant, and impactful learning experiences — from leadership and soft skills to sales capability, talent development, and digital-supported performance transformation.
-            </p>
-            <p className="mt-4 font-serif-italic text-navy/60 text-base max-w-xl">
-              We believe that when learning becomes part of culture, growth becomes a way of life.
-            </p>
-
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link to="/services" className="group inline-flex items-center gap-2 rounded-full bg-navy text-white px-6 py-3.5 text-sm font-semibold hover:bg-charcoal hover:-translate-y-0.5 transition shadow-lg shadow-navy/20">
-                Explore What We Do <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-              </Link>
-              <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border-2 border-navy/15 bg-white text-navy px-6 py-3.5 text-sm font-semibold hover:border-gold hover:text-gold transition">
-                Schedule Strategic Consultation <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </div>
-
-            <div className="mt-10 flex flex-wrap gap-2">
-              {["Leadership Development", "Sales Capability", "Talent Assessment", "Digital Learning", "CRM ACT"].map((t) => (
-                <span key={t} className="inline-flex items-center gap-1.5 rounded-full bg-white border border-navy/10 px-3.5 py-1.5 text-[11px] uppercase tracking-wider text-navy/75 font-medium">
-                  <span className="h-1 w-1 rounded-full bg-gold" />{t}
-                </span>
-              ))}
+              Business Management & People Development Consulting
             </div>
           </Reveal>
 
-          <Reveal delay={0.2} className="lg:col-span-5">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-br from-gold/20 via-transparent to-navy/10 rounded-[2rem] blur-xl" />
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                className="relative overflow-hidden rounded-3xl border border-navy/10 shadow-2xl shadow-navy/15"
-              >
-                <img src={heroImg} alt="Primera leadership team facilitating an Indonesian corporate workshop" className="w-full h-auto object-cover" />
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
-              </motion.div>
+          <Reveal delay={0.05}>
+            <h1 className="font-display mt-7 leading-[1.02] text-balance text-4xl sm:text-5xl lg:text-6xl xl:text-[4.5rem] font-extrabold">
+              Empowering <span className="text-gold">People.</span>
+              <br />
+              Elevating Performance.
+            </h1>
+          </Reveal>
 
-              {/* floating credibility badge */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6, duration: 0.8 }}
-                className="absolute -bottom-6 -left-4 md:-left-8 bg-white rounded-2xl border border-navy/10 shadow-xl p-4 max-w-[200px]"
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-gold to-orange flex items-center justify-center">
-                    <Award className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-wider text-navy/60 font-semibold">Certified</p>
-                    <p className="font-display text-sm text-navy font-bold">CFP® · QWM · CRGP</p>
-                  </div>
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.75, duration: 0.8 }}
-                className="absolute -top-4 -right-3 md:-right-6 bg-navy text-white rounded-2xl shadow-xl p-3.5 flex items-center gap-2.5"
-              >
-                <BarChart3 className="h-5 w-5 text-gold" />
-                <div>
-                  <p className="text-[9px] uppercase tracking-wider text-gold font-semibold">Evaluation</p>
-                  <p className="font-display text-sm font-bold">Level 1–4</p>
-                </div>
-              </motion.div>
+          <Reveal delay={0.12}>
+            <p className="mt-7 text-white/80 leading-relaxed max-w-2xl text-base md:text-lg">
+              {SITE.name} helps organizations grow through practical, relevant, and impactful learning experiences — from leadership and soft skills to sales capability, talent development, and digital-supported performance transformation.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.18}>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link to="/contact" className="group inline-flex items-center gap-2 rounded-full bg-gold text-navy px-6 py-3.5 text-sm font-bold hover:bg-white hover:-translate-y-0.5 transition shadow-xl shadow-gold/25">
+                Schedule Strategic Consultation <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+              </Link>
+              <Link to="/services" className="inline-flex items-center gap-2 rounded-full border-2 border-white/40 bg-white/5 backdrop-blur text-white px-6 py-3.5 text-sm font-semibold hover:bg-white hover:text-navy transition">
+                Explore What We Do <ArrowUpRight className="h-4 w-4" />
+              </Link>
             </div>
+          </Reveal>
+
+          <Reveal delay={0.25}>
+            <p className="mt-10 text-[11px] tracking-[0.22em] uppercase text-white/55 font-semibold">
+              Leadership · Sales Capability · Talent Development · Digital Learning · CRM ACT
+            </p>
           </Reveal>
         </div>
       </div>
+
+      {/* Bottom hairline */}
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
     </section>
   );
 }

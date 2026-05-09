@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, ArrowUpRight, Phone } from "lucide-react";
+import { Menu, X, ArrowUpRight, Phone, Mail } from "lucide-react";
 import { NAV, SITE } from "@/lib/site";
 import logo from "@/assets/primera-logo.png";
 
@@ -44,6 +44,8 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [hover, setHover] = useState<string | null>(null);
   const loc = useLocation();
+  const isHome = loc.pathname === "/";
+  const transparent = isHome && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -54,18 +56,45 @@ export function Header() {
 
   useEffect(() => { setOpen(false); setHover(null); }, [loc.pathname]);
 
+  const linkColor = transparent ? "text-white/90 hover:text-white" : "text-navy/85 hover:text-navy";
+  const wordmarkColor = transparent ? "text-white" : "text-navy";
+  const goldEyebrow = transparent ? "text-gold" : "text-gold";
+
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/95 backdrop-blur-md border-b border-line shadow-[0_2px_24px_-12px_rgba(10,22,40,0.18)]" : "bg-transparent"
+        scrolled || !isHome
+          ? "bg-white/95 backdrop-blur-md border-b border-line shadow-[0_2px_24px_-12px_rgba(10,22,40,0.18)]"
+          : "bg-transparent"
       }`}
       onMouseLeave={() => setHover(null)}
     >
-      <div className="container-x flex items-center justify-between h-16 md:h-20">
+      {/* Top contact strip */}
+      <div className={`hidden md:block border-b transition-colors ${transparent ? "border-white/15" : "border-line/70"}`}>
+        <div className="container-x flex items-center justify-between h-9 text-[11px]">
+          <div className={`flex items-center gap-5 ${transparent ? "text-white/75" : "text-navy/70"}`}>
+            <a href={`mailto:${SITE.email}`} className="inline-flex items-center gap-1.5 hover:text-gold transition">
+              <Mail className="h-3 w-3" /> {SITE.email}
+            </a>
+            <a href={`tel:${SITE.phone.replace(/\s/g,"")}`} className="inline-flex items-center gap-1.5 hover:text-gold transition">
+              <Phone className="h-3 w-3" /> {SITE.phone}
+            </a>
+          </div>
+          <div className={`tracking-[0.22em] uppercase font-semibold ${transparent ? "text-white/60" : "text-navy/55"}`}>
+            <span className={goldEyebrow}>●</span> {SITE.positioning}
+          </div>
+        </div>
+      </div>
+
+      <div className="container-x flex items-center justify-between h-16 md:h-[72px]">
         <Link to="/" className="flex items-center gap-3 shrink-0" aria-label={SITE.name}>
-          <img src={logo} alt={`${SITE.short} logo`} className="h-8 md:h-10 w-auto object-contain" />
+          <img
+            src={logo}
+            alt={`${SITE.short} logo`}
+            className={`h-9 md:h-11 w-auto object-contain transition ${transparent ? "brightness-0 invert" : ""}`}
+          />
           <div className="hidden sm:flex flex-col leading-tight">
-            <span className="font-display text-[13px] tracking-[0.16em] uppercase text-navy font-bold">Primera Karya Sinergia</span>
+            <span className={`font-display text-[13px] tracking-[0.16em] uppercase font-bold ${wordmarkColor}`}>Primera Karya Sinergia</span>
             <span className="text-[9px] tracking-[0.28em] uppercase text-gold font-semibold">Empowering · Elevating</span>
           </div>
         </Link>
@@ -77,8 +106,8 @@ export function Header() {
               <div key={n.to} className="relative" onMouseEnter={() => setHover(n.to)}>
                 <Link
                   to={n.to}
-                  className="px-3.5 py-2 text-[13px] font-medium text-navy/85 hover:text-navy transition-colors gold-underline"
-                  activeProps={{ className: "text-navy font-semibold" }}
+                  className={`px-3.5 py-2 text-[13px] font-medium transition-colors gold-underline ${linkColor}`}
+                  activeProps={{ className: `font-semibold ${transparent ? "text-white" : "text-navy"}` }}
                   activeOptions={{ exact: n.to === "/" }}
                 >
                   {n.label}
@@ -104,23 +133,21 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={`https://wa.me/${SITE.whatsapp}`}
-            target="_blank" rel="noopener noreferrer"
-            className="hidden md:inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-navy hover:border-gold hover:text-gold transition"
-            aria-label="WhatsApp"
-          >
-            <Phone className="h-4 w-4" />
-          </a>
           <Link
             to="/contact"
-            className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-navy to-charcoal text-white px-4 md:px-5 py-2.5 text-xs md:text-[13px] font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all border border-gold/30"
+            className={`hidden sm:inline-flex items-center gap-1.5 rounded-full px-4 md:px-5 py-2.5 text-xs md:text-[13px] font-semibold transition-all border ${
+              transparent
+                ? "bg-gold text-navy border-gold hover:bg-white hover:border-white"
+                : "bg-gradient-to-r from-navy to-charcoal text-white border-gold/30 hover:shadow-lg hover:-translate-y-0.5"
+            }`}
           >
-            Schedule Strategic Consultation <ArrowUpRight className="h-3.5 w-3.5" />
+            Schedule Consultation <ArrowUpRight className="h-3.5 w-3.5" />
           </Link>
           <button
             onClick={() => setOpen((v) => !v)}
-            className="lg:hidden h-10 w-10 inline-flex items-center justify-center rounded-full border border-line text-navy"
+            className={`lg:hidden h-10 w-10 inline-flex items-center justify-center rounded-full border transition ${
+              transparent ? "border-white/40 text-white" : "border-line text-navy"
+            }`}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
           >
