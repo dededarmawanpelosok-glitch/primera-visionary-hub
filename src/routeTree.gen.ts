@@ -21,6 +21,12 @@ import { Route as ClientsRouteImport } from './routes/clients'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsCrmActRouteImport } from './routes/products.crm-act'
+import { Route as AboutWhoWeAreRouteImport } from './routes/about.who-we-are'
+import { Route as AboutVisionMissionRouteImport } from './routes/about.vision-mission'
+import { Route as AboutOurJourneyRouteImport } from './routes/about.our-journey'
+import { Route as AboutOurApproachRouteImport } from './routes/about.our-approach'
+import { Route as AboutLeadershipFacilitatorsRouteImport } from './routes/about.leadership-facilitators'
+import { Route as AboutCoreValuesRouteImport } from './routes/about.core-values'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -82,10 +88,41 @@ const ProductsCrmActRoute = ProductsCrmActRouteImport.update({
   path: '/crm-act',
   getParentRoute: () => ProductsRoute,
 } as any)
+const AboutWhoWeAreRoute = AboutWhoWeAreRouteImport.update({
+  id: '/who-we-are',
+  path: '/who-we-are',
+  getParentRoute: () => AboutRoute,
+} as any)
+const AboutVisionMissionRoute = AboutVisionMissionRouteImport.update({
+  id: '/vision-mission',
+  path: '/vision-mission',
+  getParentRoute: () => AboutRoute,
+} as any)
+const AboutOurJourneyRoute = AboutOurJourneyRouteImport.update({
+  id: '/our-journey',
+  path: '/our-journey',
+  getParentRoute: () => AboutRoute,
+} as any)
+const AboutOurApproachRoute = AboutOurApproachRouteImport.update({
+  id: '/our-approach',
+  path: '/our-approach',
+  getParentRoute: () => AboutRoute,
+} as any)
+const AboutLeadershipFacilitatorsRoute =
+  AboutLeadershipFacilitatorsRouteImport.update({
+    id: '/leadership-facilitators',
+    path: '/leadership-facilitators',
+    getParentRoute: () => AboutRoute,
+  } as any)
+const AboutCoreValuesRoute = AboutCoreValuesRouteImport.update({
+  id: '/core-values',
+  path: '/core-values',
+  getParentRoute: () => AboutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/about': typeof AboutRouteWithChildren
   '/clients': typeof ClientsRoute
   '/contact': typeof ContactRoute
   '/impact': typeof ImpactRoute
@@ -95,11 +132,17 @@ export interface FileRoutesByFullPath {
   '/programs': typeof ProgramsRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
+  '/about/core-values': typeof AboutCoreValuesRoute
+  '/about/leadership-facilitators': typeof AboutLeadershipFacilitatorsRoute
+  '/about/our-approach': typeof AboutOurApproachRoute
+  '/about/our-journey': typeof AboutOurJourneyRoute
+  '/about/vision-mission': typeof AboutVisionMissionRoute
+  '/about/who-we-are': typeof AboutWhoWeAreRoute
   '/products/crm-act': typeof ProductsCrmActRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/about': typeof AboutRouteWithChildren
   '/clients': typeof ClientsRoute
   '/contact': typeof ContactRoute
   '/impact': typeof ImpactRoute
@@ -109,12 +152,18 @@ export interface FileRoutesByTo {
   '/programs': typeof ProgramsRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
+  '/about/core-values': typeof AboutCoreValuesRoute
+  '/about/leadership-facilitators': typeof AboutLeadershipFacilitatorsRoute
+  '/about/our-approach': typeof AboutOurApproachRoute
+  '/about/our-journey': typeof AboutOurJourneyRoute
+  '/about/vision-mission': typeof AboutVisionMissionRoute
+  '/about/who-we-are': typeof AboutWhoWeAreRoute
   '/products/crm-act': typeof ProductsCrmActRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/about': typeof AboutRouteWithChildren
   '/clients': typeof ClientsRoute
   '/contact': typeof ContactRoute
   '/impact': typeof ImpactRoute
@@ -124,6 +173,12 @@ export interface FileRoutesById {
   '/programs': typeof ProgramsRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
+  '/about/core-values': typeof AboutCoreValuesRoute
+  '/about/leadership-facilitators': typeof AboutLeadershipFacilitatorsRoute
+  '/about/our-approach': typeof AboutOurApproachRoute
+  '/about/our-journey': typeof AboutOurJourneyRoute
+  '/about/vision-mission': typeof AboutVisionMissionRoute
+  '/about/who-we-are': typeof AboutWhoWeAreRoute
   '/products/crm-act': typeof ProductsCrmActRoute
 }
 export interface FileRouteTypes {
@@ -140,6 +195,12 @@ export interface FileRouteTypes {
     | '/programs'
     | '/services'
     | '/terms'
+    | '/about/core-values'
+    | '/about/leadership-facilitators'
+    | '/about/our-approach'
+    | '/about/our-journey'
+    | '/about/vision-mission'
+    | '/about/who-we-are'
     | '/products/crm-act'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -154,6 +215,12 @@ export interface FileRouteTypes {
     | '/programs'
     | '/services'
     | '/terms'
+    | '/about/core-values'
+    | '/about/leadership-facilitators'
+    | '/about/our-approach'
+    | '/about/our-journey'
+    | '/about/vision-mission'
+    | '/about/who-we-are'
     | '/products/crm-act'
   id:
     | '__root__'
@@ -168,12 +235,18 @@ export interface FileRouteTypes {
     | '/programs'
     | '/services'
     | '/terms'
+    | '/about/core-values'
+    | '/about/leadership-facilitators'
+    | '/about/our-approach'
+    | '/about/our-journey'
+    | '/about/vision-mission'
+    | '/about/who-we-are'
     | '/products/crm-act'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  AboutRoute: typeof AboutRouteWithChildren
   ClientsRoute: typeof ClientsRoute
   ContactRoute: typeof ContactRoute
   ImpactRoute: typeof ImpactRoute
@@ -271,8 +344,70 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsCrmActRouteImport
       parentRoute: typeof ProductsRoute
     }
+    '/about/who-we-are': {
+      id: '/about/who-we-are'
+      path: '/who-we-are'
+      fullPath: '/about/who-we-are'
+      preLoaderRoute: typeof AboutWhoWeAreRouteImport
+      parentRoute: typeof AboutRoute
+    }
+    '/about/vision-mission': {
+      id: '/about/vision-mission'
+      path: '/vision-mission'
+      fullPath: '/about/vision-mission'
+      preLoaderRoute: typeof AboutVisionMissionRouteImport
+      parentRoute: typeof AboutRoute
+    }
+    '/about/our-journey': {
+      id: '/about/our-journey'
+      path: '/our-journey'
+      fullPath: '/about/our-journey'
+      preLoaderRoute: typeof AboutOurJourneyRouteImport
+      parentRoute: typeof AboutRoute
+    }
+    '/about/our-approach': {
+      id: '/about/our-approach'
+      path: '/our-approach'
+      fullPath: '/about/our-approach'
+      preLoaderRoute: typeof AboutOurApproachRouteImport
+      parentRoute: typeof AboutRoute
+    }
+    '/about/leadership-facilitators': {
+      id: '/about/leadership-facilitators'
+      path: '/leadership-facilitators'
+      fullPath: '/about/leadership-facilitators'
+      preLoaderRoute: typeof AboutLeadershipFacilitatorsRouteImport
+      parentRoute: typeof AboutRoute
+    }
+    '/about/core-values': {
+      id: '/about/core-values'
+      path: '/core-values'
+      fullPath: '/about/core-values'
+      preLoaderRoute: typeof AboutCoreValuesRouteImport
+      parentRoute: typeof AboutRoute
+    }
   }
 }
+
+interface AboutRouteChildren {
+  AboutCoreValuesRoute: typeof AboutCoreValuesRoute
+  AboutLeadershipFacilitatorsRoute: typeof AboutLeadershipFacilitatorsRoute
+  AboutOurApproachRoute: typeof AboutOurApproachRoute
+  AboutOurJourneyRoute: typeof AboutOurJourneyRoute
+  AboutVisionMissionRoute: typeof AboutVisionMissionRoute
+  AboutWhoWeAreRoute: typeof AboutWhoWeAreRoute
+}
+
+const AboutRouteChildren: AboutRouteChildren = {
+  AboutCoreValuesRoute: AboutCoreValuesRoute,
+  AboutLeadershipFacilitatorsRoute: AboutLeadershipFacilitatorsRoute,
+  AboutOurApproachRoute: AboutOurApproachRoute,
+  AboutOurJourneyRoute: AboutOurJourneyRoute,
+  AboutVisionMissionRoute: AboutVisionMissionRoute,
+  AboutWhoWeAreRoute: AboutWhoWeAreRoute,
+}
+
+const AboutRouteWithChildren = AboutRoute._addFileChildren(AboutRouteChildren)
 
 interface ProductsRouteChildren {
   ProductsCrmActRoute: typeof ProductsCrmActRoute
@@ -288,7 +423,7 @@ const ProductsRouteWithChildren = ProductsRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  AboutRoute: AboutRouteWithChildren,
   ClientsRoute: ClientsRoute,
   ContactRoute: ContactRoute,
   ImpactRoute: ImpactRoute,

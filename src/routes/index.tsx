@@ -15,6 +15,7 @@ import {
 } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
+import { LeadershipCard } from "@/components/LeadershipCard";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -556,25 +557,15 @@ function LeadershipPreview() {
             </h2>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-4 lg:text-right">
-            <Link to="/about#leadership" className="inline-flex items-center gap-2 rounded-full border-2 border-navy/15 bg-white text-navy px-5 py-3 text-sm font-semibold hover:border-gold hover:text-gold transition">
+            <Link to="/about/leadership-facilitators" className="inline-flex items-center gap-2 rounded-full border-2 border-navy/15 bg-white text-navy px-5 py-3 text-sm font-semibold hover:border-orange hover:text-orange transition">
               Meet Our Team <ArrowRight className="h-4 w-4" />
             </Link>
           </Reveal>
         </div>
 
-        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {featured.map((p, i) => (
-            <Reveal key={p.name} delay={i * 0.06}>
-              <div className="rounded-2xl bg-white border border-navy/10 p-6 h-full lift hover:border-gold/40">
-                <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-navy to-charcoal text-gold flex items-center justify-center font-display text-xl font-extrabold">
-                  {p.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
-                </div>
-                <p className="mt-5 text-[10px] uppercase tracking-wider text-gold font-bold">{p.role}</p>
-                <p className="mt-1 font-display text-base text-navy font-bold leading-tight">{p.name}</p>
-                <p className="mt-3 text-[11px] text-navy/55 uppercase tracking-wider">{p.credentials}</p>
-                <p className="mt-2 text-sm text-navy/70 leading-relaxed">{p.expertise}</p>
-              </div>
-            </Reveal>
+            <LeadershipCard key={p.name} leader={p} delay={i * 0.06} />
           ))}
         </div>
       </div>

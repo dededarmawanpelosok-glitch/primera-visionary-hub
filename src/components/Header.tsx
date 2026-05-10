@@ -6,11 +6,12 @@ import logo from "@/assets/primera-logo.png";
 
 const SUBMENUS: Record<string, { label: string; to: string; desc?: string }[]> = {
   "/about": [
-    { label: "Who We Are", to: "/about#who" },
-    { label: "Vision & Mission", to: "/about#vm" },
-    { label: "Core Values", to: "/about#values" },
-    { label: "Our Approach", to: "/about#approach" },
-    { label: "Leadership & Facilitators", to: "/about#leadership" },
+    { label: "Who We Are", to: "/about/who-we-are", desc: "Company identity and belief" },
+    { label: "Vision & Mission", to: "/about/vision-mission", desc: "Purpose and strategic direction" },
+    { label: "Core Values", to: "/about/core-values", desc: "PRIMERA values" },
+    { label: "Our Approach", to: "/about/our-approach", desc: "Learning methodology" },
+    { label: "Leadership & Facilitators", to: "/about/leadership-facilitators", desc: "Advisors and experts" },
+    { label: "Our Journey", to: "/about/our-journey", desc: "Growth story and milestones" },
   ],
   "/services": [
     { label: "Leadership & Managerial", to: "/services#leadership" },
@@ -102,26 +103,39 @@ export function Header() {
         <nav className="hidden lg:flex items-center" aria-label="Primary">
           {NAV.map((n) => {
             const sub = SUBMENUS[n.to];
+            const isAbout = n.to === "/about";
             return (
               <div key={n.to} className="relative" onMouseEnter={() => setHover(n.to)}>
-                <Link
-                  to={n.to}
-                  className={`px-3.5 py-2 text-[13px] font-medium transition-colors gold-underline ${linkColor}`}
-                  activeProps={{ className: `font-semibold ${transparent ? "text-white" : "text-navy"}` }}
-                  activeOptions={{ exact: n.to === "/" }}
-                >
-                  {n.label}
-                </Link>
+                {isAbout ? (
+                  <button
+                    type="button"
+                    onClick={() => setHover(hover === n.to ? null : n.to)}
+                    aria-haspopup="menu"
+                    aria-expanded={hover === n.to}
+                    className={`px-3.5 py-2 text-[13px] font-medium transition-colors gold-underline ${linkColor}`}
+                  >
+                    {n.label}
+                  </button>
+                ) : (
+                  <Link
+                    to={n.to}
+                    className={`px-3.5 py-2 text-[13px] font-medium transition-colors gold-underline ${linkColor}`}
+                    activeProps={{ className: `font-semibold ${transparent ? "text-white" : "text-navy"}` }}
+                    activeOptions={{ exact: n.to === "/" }}
+                  >
+                    {n.label}
+                  </Link>
+                )}
                 {sub && hover === n.to && (
-                  <div className="absolute top-full left-0 pt-3 w-72 z-50">
+                  <div className="absolute top-full left-0 pt-3 w-80 z-50">
                     <div className="rounded-xl bg-white border border-line shadow-2xl p-2">
                       {sub.map((s) => (
                         <a key={s.to} href={s.to} className="block px-3 py-2.5 rounded-lg hover:bg-soft transition group">
                           <div className="flex items-center justify-between">
-                            <span className="text-sm font-medium text-navy">{s.label}</span>
-                            <ArrowUpRight className="h-3.5 w-3.5 text-gold opacity-0 group-hover:opacity-100 transition" />
+                            <span className="text-sm font-semibold text-navy group-hover:text-orange transition">{s.label}</span>
+                            <ArrowUpRight className="h-3.5 w-3.5 text-orange opacity-0 group-hover:opacity-100 transition" />
                           </div>
-                          {s.desc && <p className="text-[11px] text-navy/55 mt-0.5">{s.desc}</p>}
+                          {s.desc && <p className="text-[11px] text-charcoal/70 mt-0.5">{s.desc}</p>}
                         </a>
                       ))}
                     </div>
@@ -163,16 +177,45 @@ export function Header() {
         } bg-white border-b border-line`}
       >
         <div className="container-x py-6 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
-          {NAV.map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              className="py-3 text-base font-display tracking-wide text-navy/85 hover:text-navy border-b border-line/60"
-              activeProps={{ className: "text-navy font-semibold" }}
-            >
-              {n.label}
-            </Link>
-          ))}
+          {NAV.map((n) => {
+            const sub = SUBMENUS[n.to];
+            const isAbout = n.to === "/about";
+            if (isAbout && sub) {
+              const isOpen = hover === n.to;
+              return (
+                <div key={n.to} className="border-b border-line/60">
+                  <button
+                    type="button"
+                    onClick={() => setHover(isOpen ? null : n.to)}
+                    className="w-full flex items-center justify-between py-3 text-base font-display tracking-wide text-navy/85"
+                    aria-expanded={isOpen}
+                  >
+                    {n.label}
+                    <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>▾</span>
+                  </button>
+                  {isOpen && (
+                    <div className="pb-3 pl-3 flex flex-col gap-1">
+                      {sub.map((s) => (
+                        <a key={s.to} href={s.to} className="py-2 text-sm text-charcoal hover:text-orange transition">
+                          {s.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+            return (
+              <Link
+                key={n.to}
+                to={n.to}
+                className="py-3 text-base font-display tracking-wide text-navy/85 hover:text-navy border-b border-line/60"
+                activeProps={{ className: "text-navy font-semibold" }}
+              >
+                {n.label}
+              </Link>
+            );
+          })}
           <div className="mt-4 grid grid-cols-2 gap-2">
             <Link to="/contact" className="inline-flex items-center justify-center gap-1.5 rounded-full bg-navy text-white px-5 py-3 text-xs font-semibold">
               Consultation <ArrowUpRight className="h-3.5 w-3.5" />

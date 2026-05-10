@@ -4,6 +4,7 @@ import aboutImg from "@/assets/about-leadership.jpg";
 import { VALUES, LEADERSHIP, CREDENTIALS, SITE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
+import { LeadershipCard } from "@/components/LeadershipCard";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -136,21 +137,9 @@ function AboutPage() {
             <SectionLabel>Leadership</SectionLabel>
             <h2 className="font-display text-5xl md:text-6xl mt-6 max-w-3xl">Senior advisors with board-level experience</h2>
           </Reveal>
-          <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {LEADERSHIP.map((p, i) => (
-              <Reveal key={p.name} delay={i * 0.05}>
-                <div className="rounded-2xl border border-line bg-white p-6 h-full lift">
-                  <div className="flex items-center gap-4">
-                    <div className="h-14 w-14 rounded-full bg-ink text-gold flex items-center justify-center font-display text-xl">{p.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}</div>
-                    <div>
-                      <p className="eyebrow text-ink/60">{p.role}</p>
-                      <p className="font-display text-lg uppercase tracking-wide leading-tight mt-1">{p.name}</p>
-                    </div>
-                  </div>
-                  <p className="mt-4 text-xs text-ink/60 uppercase tracking-wider">{p.credentials}</p>
-                  <p className="mt-2 text-sm text-ink/75">{p.expertise}</p>
-                </div>
-              </Reveal>
+              <LeadershipCard key={p.name} leader={p} delay={i * 0.05} />
             ))}
           </div>
           <Reveal delay={0.2}>
