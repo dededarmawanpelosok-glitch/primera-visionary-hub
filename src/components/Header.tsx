@@ -6,11 +6,12 @@ import logo from "@/assets/primera-logo.png";
 
 const SUBMENUS: Record<string, { label: string; to: string; desc?: string }[]> = {
   "/about": [
-    { label: "Who We Are", to: "/about#who" },
-    { label: "Vision & Mission", to: "/about#vm" },
-    { label: "Core Values", to: "/about#values" },
-    { label: "Our Approach", to: "/about#approach" },
-    { label: "Leadership & Facilitators", to: "/about#leadership" },
+    { label: "Who We Are", to: "/about/who-we-are", desc: "Company identity and belief" },
+    { label: "Vision & Mission", to: "/about/vision-mission", desc: "Purpose and strategic direction" },
+    { label: "Core Values", to: "/about/core-values", desc: "PRIMERA values" },
+    { label: "Our Approach", to: "/about/our-approach", desc: "Learning methodology" },
+    { label: "Leadership & Facilitators", to: "/about/leadership-facilitators", desc: "Advisors and experts" },
+    { label: "Our Journey", to: "/about/our-journey", desc: "Growth story and milestones" },
   ],
   "/services": [
     { label: "Leadership & Managerial", to: "/services#leadership" },
