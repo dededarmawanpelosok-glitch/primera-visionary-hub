@@ -177,16 +177,45 @@ export function Header() {
         } bg-white border-b border-line`}
       >
         <div className="container-x py-6 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
-          {NAV.map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              className="py-3 text-base font-display tracking-wide text-navy/85 hover:text-navy border-b border-line/60"
-              activeProps={{ className: "text-navy font-semibold" }}
-            >
-              {n.label}
-            </Link>
-          ))}
+          {NAV.map((n) => {
+            const sub = SUBMENUS[n.to];
+            const isAbout = n.to === "/about";
+            if (isAbout && sub) {
+              const isOpen = hover === n.to;
+              return (
+                <div key={n.to} className="border-b border-line/60">
+                  <button
+                    type="button"
+                    onClick={() => setHover(isOpen ? null : n.to)}
+                    className="w-full flex items-center justify-between py-3 text-base font-display tracking-wide text-navy/85"
+                    aria-expanded={isOpen}
+                  >
+                    {n.label}
+                    <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>▾</span>
+                  </button>
+                  {isOpen && (
+                    <div className="pb-3 pl-3 flex flex-col gap-1">
+                      {sub.map((s) => (
+                        <a key={s.to} href={s.to} className="py-2 text-sm text-charcoal hover:text-orange transition">
+                          {s.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+            return (
+              <Link
+                key={n.to}
+                to={n.to}
+                className="py-3 text-base font-display tracking-wide text-navy/85 hover:text-navy border-b border-line/60"
+                activeProps={{ className: "text-navy font-semibold" }}
+              >
+                {n.label}
+              </Link>
+            );
+          })}
           <div className="mt-4 grid grid-cols-2 gap-2">
             <Link to="/contact" className="inline-flex items-center justify-center gap-1.5 rounded-full bg-navy text-white px-5 py-3 text-xs font-semibold">
               Consultation <ArrowUpRight className="h-3.5 w-3.5" />
