@@ -15,6 +15,7 @@ import {
 } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
+import { LeadershipCard } from "@/components/LeadershipCard";
 
 export const Route = createFileRoute("/")({
   head: () => ({
