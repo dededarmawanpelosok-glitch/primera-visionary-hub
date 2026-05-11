@@ -5,7 +5,7 @@ import { SectionLabel } from "@/components/SectionLabel";
 import { CheckCircle2 } from "lucide-react";
 import hero from "@/assets/hero-corporate.jpg";
 
-export const Route = createFileRoute("/about/who-we-are")({
+export const Route = createFileRoute("/about_/who-we-are")({
   head: () => ({
     meta: [
       { title: "Who We Are — Primera Karya Sinergia" },
