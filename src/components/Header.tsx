@@ -179,8 +179,7 @@ export function Header() {
         <div className="container-x py-6 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
           {NAV.map((n) => {
             const sub = SUBMENUS[n.to];
-            const isAbout = n.to === "/about";
-            if (isAbout && sub) {
+            if (sub) {
               const isOpen = hover === n.to;
               return (
                 <div key={n.to} className="border-b border-line/60">
