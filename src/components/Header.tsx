@@ -103,10 +103,10 @@ export function Header() {
         <nav className="hidden lg:flex items-center" aria-label="Primary">
           {NAV.map((n) => {
             const sub = SUBMENUS[n.to];
-            const isAbout = n.to === "/about";
+            const isTrigger = !!sub;
             return (
               <div key={n.to} className="relative" onMouseEnter={() => setHover(n.to)}>
-                {isAbout ? (
+                {isTrigger ? (
                   <button
                     type="button"
                     onClick={() => setHover(hover === n.to ? null : n.to)}
