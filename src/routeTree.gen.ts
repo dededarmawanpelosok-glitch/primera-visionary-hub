@@ -20,7 +20,23 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ClientsRouteImport } from './routes/clients'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesTalentAssessmentRouteImport } from './routes/services.talent-assessment'
+import { Route as ServicesSoftSkillsRouteImport } from './routes/services.soft-skills'
+import { Route as ServicesSalesCapabilityRouteImport } from './routes/services.sales-capability'
+import { Route as ServicesLeadershipManagerialRouteImport } from './routes/services.leadership-managerial'
+import { Route as ServicesFacilitatorDigitalLearningRouteImport } from './routes/services.facilitator-digital-learning'
+import { Route as ServicesBusinessConsultingRouteImport } from './routes/services.business-consulting'
+import { Route as ProductsLearningToPerformanceRouteImport } from './routes/products.learning-to-performance'
 import { Route as ProductsCrmActRouteImport } from './routes/products.crm-act'
+import { Route as ProductsAssessmentToolsRouteImport } from './routes/products.assessment-tools'
+import { Route as InsightsWhitepapersRouteImport } from './routes/insights.whitepapers'
+import { Route as InsightsWebinarsRouteImport } from './routes/insights.webinars'
+import { Route as InsightsNewsRouteImport } from './routes/insights.news'
+import { Route as InsightsArticlesRouteImport } from './routes/insights.articles'
+import { Route as ClientsSuccessStoriesRouteImport } from './routes/clients.success-stories'
+import { Route as ClientsPartnersRouteImport } from './routes/clients.partners'
+import { Route as ClientsLearningImpactRouteImport } from './routes/clients.learning-impact'
+import { Route as ClientsIndustriesRouteImport } from './routes/clients.industries'
 import { Route as AboutWhoWeAreRouteImport } from './routes/about.who-we-are'
 import { Route as AboutVisionMissionRouteImport } from './routes/about.vision-mission'
 import { Route as AboutOurJourneyRouteImport } from './routes/about.our-journey'
@@ -83,10 +99,95 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesTalentAssessmentRoute =
+  ServicesTalentAssessmentRouteImport.update({
+    id: '/talent-assessment',
+    path: '/talent-assessment',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesSoftSkillsRoute = ServicesSoftSkillsRouteImport.update({
+  id: '/soft-skills',
+  path: '/soft-skills',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesSalesCapabilityRoute = ServicesSalesCapabilityRouteImport.update({
+  id: '/sales-capability',
+  path: '/sales-capability',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesLeadershipManagerialRoute =
+  ServicesLeadershipManagerialRouteImport.update({
+    id: '/leadership-managerial',
+    path: '/leadership-managerial',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesFacilitatorDigitalLearningRoute =
+  ServicesFacilitatorDigitalLearningRouteImport.update({
+    id: '/facilitator-digital-learning',
+    path: '/facilitator-digital-learning',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesBusinessConsultingRoute =
+  ServicesBusinessConsultingRouteImport.update({
+    id: '/business-consulting',
+    path: '/business-consulting',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ProductsLearningToPerformanceRoute =
+  ProductsLearningToPerformanceRouteImport.update({
+    id: '/learning-to-performance',
+    path: '/learning-to-performance',
+    getParentRoute: () => ProductsRoute,
+  } as any)
 const ProductsCrmActRoute = ProductsCrmActRouteImport.update({
   id: '/crm-act',
   path: '/crm-act',
   getParentRoute: () => ProductsRoute,
+} as any)
+const ProductsAssessmentToolsRoute = ProductsAssessmentToolsRouteImport.update({
+  id: '/assessment-tools',
+  path: '/assessment-tools',
+  getParentRoute: () => ProductsRoute,
+} as any)
+const InsightsWhitepapersRoute = InsightsWhitepapersRouteImport.update({
+  id: '/whitepapers',
+  path: '/whitepapers',
+  getParentRoute: () => InsightsRoute,
+} as any)
+const InsightsWebinarsRoute = InsightsWebinarsRouteImport.update({
+  id: '/webinars',
+  path: '/webinars',
+  getParentRoute: () => InsightsRoute,
+} as any)
+const InsightsNewsRoute = InsightsNewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => InsightsRoute,
+} as any)
+const InsightsArticlesRoute = InsightsArticlesRouteImport.update({
+  id: '/articles',
+  path: '/articles',
+  getParentRoute: () => InsightsRoute,
+} as any)
+const ClientsSuccessStoriesRoute = ClientsSuccessStoriesRouteImport.update({
+  id: '/success-stories',
+  path: '/success-stories',
+  getParentRoute: () => ClientsRoute,
+} as any)
+const ClientsPartnersRoute = ClientsPartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => ClientsRoute,
+} as any)
+const ClientsLearningImpactRoute = ClientsLearningImpactRouteImport.update({
+  id: '/learning-impact',
+  path: '/learning-impact',
+  getParentRoute: () => ClientsRoute,
+} as any)
+const ClientsIndustriesRoute = ClientsIndustriesRouteImport.update({
+  id: '/industries',
+  path: '/industries',
+  getParentRoute: () => ClientsRoute,
 } as any)
 const AboutWhoWeAreRoute = AboutWhoWeAreRouteImport.update({
   id: '/who-we-are',
@@ -123,14 +224,14 @@ const AboutCoreValuesRoute = AboutCoreValuesRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRouteWithChildren
-  '/clients': typeof ClientsRoute
+  '/clients': typeof ClientsRouteWithChildren
   '/contact': typeof ContactRoute
   '/impact': typeof ImpactRoute
-  '/insights': typeof InsightsRoute
+  '/insights': typeof InsightsRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRouteWithChildren
   '/programs': typeof ProgramsRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
   '/terms': typeof TermsRoute
   '/about/core-values': typeof AboutCoreValuesRoute
   '/about/leadership-facilitators': typeof AboutLeadershipFacilitatorsRoute
@@ -138,19 +239,35 @@ export interface FileRoutesByFullPath {
   '/about/our-journey': typeof AboutOurJourneyRoute
   '/about/vision-mission': typeof AboutVisionMissionRoute
   '/about/who-we-are': typeof AboutWhoWeAreRoute
+  '/clients/industries': typeof ClientsIndustriesRoute
+  '/clients/learning-impact': typeof ClientsLearningImpactRoute
+  '/clients/partners': typeof ClientsPartnersRoute
+  '/clients/success-stories': typeof ClientsSuccessStoriesRoute
+  '/insights/articles': typeof InsightsArticlesRoute
+  '/insights/news': typeof InsightsNewsRoute
+  '/insights/webinars': typeof InsightsWebinarsRoute
+  '/insights/whitepapers': typeof InsightsWhitepapersRoute
+  '/products/assessment-tools': typeof ProductsAssessmentToolsRoute
   '/products/crm-act': typeof ProductsCrmActRoute
+  '/products/learning-to-performance': typeof ProductsLearningToPerformanceRoute
+  '/services/business-consulting': typeof ServicesBusinessConsultingRoute
+  '/services/facilitator-digital-learning': typeof ServicesFacilitatorDigitalLearningRoute
+  '/services/leadership-managerial': typeof ServicesLeadershipManagerialRoute
+  '/services/sales-capability': typeof ServicesSalesCapabilityRoute
+  '/services/soft-skills': typeof ServicesSoftSkillsRoute
+  '/services/talent-assessment': typeof ServicesTalentAssessmentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRouteWithChildren
-  '/clients': typeof ClientsRoute
+  '/clients': typeof ClientsRouteWithChildren
   '/contact': typeof ContactRoute
   '/impact': typeof ImpactRoute
-  '/insights': typeof InsightsRoute
+  '/insights': typeof InsightsRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRouteWithChildren
   '/programs': typeof ProgramsRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
   '/terms': typeof TermsRoute
   '/about/core-values': typeof AboutCoreValuesRoute
   '/about/leadership-facilitators': typeof AboutLeadershipFacilitatorsRoute
@@ -158,20 +275,36 @@ export interface FileRoutesByTo {
   '/about/our-journey': typeof AboutOurJourneyRoute
   '/about/vision-mission': typeof AboutVisionMissionRoute
   '/about/who-we-are': typeof AboutWhoWeAreRoute
+  '/clients/industries': typeof ClientsIndustriesRoute
+  '/clients/learning-impact': typeof ClientsLearningImpactRoute
+  '/clients/partners': typeof ClientsPartnersRoute
+  '/clients/success-stories': typeof ClientsSuccessStoriesRoute
+  '/insights/articles': typeof InsightsArticlesRoute
+  '/insights/news': typeof InsightsNewsRoute
+  '/insights/webinars': typeof InsightsWebinarsRoute
+  '/insights/whitepapers': typeof InsightsWhitepapersRoute
+  '/products/assessment-tools': typeof ProductsAssessmentToolsRoute
   '/products/crm-act': typeof ProductsCrmActRoute
+  '/products/learning-to-performance': typeof ProductsLearningToPerformanceRoute
+  '/services/business-consulting': typeof ServicesBusinessConsultingRoute
+  '/services/facilitator-digital-learning': typeof ServicesFacilitatorDigitalLearningRoute
+  '/services/leadership-managerial': typeof ServicesLeadershipManagerialRoute
+  '/services/sales-capability': typeof ServicesSalesCapabilityRoute
+  '/services/soft-skills': typeof ServicesSoftSkillsRoute
+  '/services/talent-assessment': typeof ServicesTalentAssessmentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRouteWithChildren
-  '/clients': typeof ClientsRoute
+  '/clients': typeof ClientsRouteWithChildren
   '/contact': typeof ContactRoute
   '/impact': typeof ImpactRoute
-  '/insights': typeof InsightsRoute
+  '/insights': typeof InsightsRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRouteWithChildren
   '/programs': typeof ProgramsRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
   '/terms': typeof TermsRoute
   '/about/core-values': typeof AboutCoreValuesRoute
   '/about/leadership-facilitators': typeof AboutLeadershipFacilitatorsRoute
@@ -179,7 +312,23 @@ export interface FileRoutesById {
   '/about/our-journey': typeof AboutOurJourneyRoute
   '/about/vision-mission': typeof AboutVisionMissionRoute
   '/about/who-we-are': typeof AboutWhoWeAreRoute
+  '/clients/industries': typeof ClientsIndustriesRoute
+  '/clients/learning-impact': typeof ClientsLearningImpactRoute
+  '/clients/partners': typeof ClientsPartnersRoute
+  '/clients/success-stories': typeof ClientsSuccessStoriesRoute
+  '/insights/articles': typeof InsightsArticlesRoute
+  '/insights/news': typeof InsightsNewsRoute
+  '/insights/webinars': typeof InsightsWebinarsRoute
+  '/insights/whitepapers': typeof InsightsWhitepapersRoute
+  '/products/assessment-tools': typeof ProductsAssessmentToolsRoute
   '/products/crm-act': typeof ProductsCrmActRoute
+  '/products/learning-to-performance': typeof ProductsLearningToPerformanceRoute
+  '/services/business-consulting': typeof ServicesBusinessConsultingRoute
+  '/services/facilitator-digital-learning': typeof ServicesFacilitatorDigitalLearningRoute
+  '/services/leadership-managerial': typeof ServicesLeadershipManagerialRoute
+  '/services/sales-capability': typeof ServicesSalesCapabilityRoute
+  '/services/soft-skills': typeof ServicesSoftSkillsRoute
+  '/services/talent-assessment': typeof ServicesTalentAssessmentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -201,7 +350,23 @@ export interface FileRouteTypes {
     | '/about/our-journey'
     | '/about/vision-mission'
     | '/about/who-we-are'
+    | '/clients/industries'
+    | '/clients/learning-impact'
+    | '/clients/partners'
+    | '/clients/success-stories'
+    | '/insights/articles'
+    | '/insights/news'
+    | '/insights/webinars'
+    | '/insights/whitepapers'
+    | '/products/assessment-tools'
     | '/products/crm-act'
+    | '/products/learning-to-performance'
+    | '/services/business-consulting'
+    | '/services/facilitator-digital-learning'
+    | '/services/leadership-managerial'
+    | '/services/sales-capability'
+    | '/services/soft-skills'
+    | '/services/talent-assessment'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -221,7 +386,23 @@ export interface FileRouteTypes {
     | '/about/our-journey'
     | '/about/vision-mission'
     | '/about/who-we-are'
+    | '/clients/industries'
+    | '/clients/learning-impact'
+    | '/clients/partners'
+    | '/clients/success-stories'
+    | '/insights/articles'
+    | '/insights/news'
+    | '/insights/webinars'
+    | '/insights/whitepapers'
+    | '/products/assessment-tools'
     | '/products/crm-act'
+    | '/products/learning-to-performance'
+    | '/services/business-consulting'
+    | '/services/facilitator-digital-learning'
+    | '/services/leadership-managerial'
+    | '/services/sales-capability'
+    | '/services/soft-skills'
+    | '/services/talent-assessment'
   id:
     | '__root__'
     | '/'
@@ -241,20 +422,36 @@ export interface FileRouteTypes {
     | '/about/our-journey'
     | '/about/vision-mission'
     | '/about/who-we-are'
+    | '/clients/industries'
+    | '/clients/learning-impact'
+    | '/clients/partners'
+    | '/clients/success-stories'
+    | '/insights/articles'
+    | '/insights/news'
+    | '/insights/webinars'
+    | '/insights/whitepapers'
+    | '/products/assessment-tools'
     | '/products/crm-act'
+    | '/products/learning-to-performance'
+    | '/services/business-consulting'
+    | '/services/facilitator-digital-learning'
+    | '/services/leadership-managerial'
+    | '/services/sales-capability'
+    | '/services/soft-skills'
+    | '/services/talent-assessment'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRouteWithChildren
-  ClientsRoute: typeof ClientsRoute
+  ClientsRoute: typeof ClientsRouteWithChildren
   ContactRoute: typeof ContactRoute
   ImpactRoute: typeof ImpactRoute
-  InsightsRoute: typeof InsightsRoute
+  InsightsRoute: typeof InsightsRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
   ProductsRoute: typeof ProductsRouteWithChildren
   ProgramsRoute: typeof ProgramsRoute
-  ServicesRoute: typeof ServicesRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
   TermsRoute: typeof TermsRoute
 }
 
@@ -337,12 +534,124 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/talent-assessment': {
+      id: '/services/talent-assessment'
+      path: '/talent-assessment'
+      fullPath: '/services/talent-assessment'
+      preLoaderRoute: typeof ServicesTalentAssessmentRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/soft-skills': {
+      id: '/services/soft-skills'
+      path: '/soft-skills'
+      fullPath: '/services/soft-skills'
+      preLoaderRoute: typeof ServicesSoftSkillsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/sales-capability': {
+      id: '/services/sales-capability'
+      path: '/sales-capability'
+      fullPath: '/services/sales-capability'
+      preLoaderRoute: typeof ServicesSalesCapabilityRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/leadership-managerial': {
+      id: '/services/leadership-managerial'
+      path: '/leadership-managerial'
+      fullPath: '/services/leadership-managerial'
+      preLoaderRoute: typeof ServicesLeadershipManagerialRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/facilitator-digital-learning': {
+      id: '/services/facilitator-digital-learning'
+      path: '/facilitator-digital-learning'
+      fullPath: '/services/facilitator-digital-learning'
+      preLoaderRoute: typeof ServicesFacilitatorDigitalLearningRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/business-consulting': {
+      id: '/services/business-consulting'
+      path: '/business-consulting'
+      fullPath: '/services/business-consulting'
+      preLoaderRoute: typeof ServicesBusinessConsultingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/products/learning-to-performance': {
+      id: '/products/learning-to-performance'
+      path: '/learning-to-performance'
+      fullPath: '/products/learning-to-performance'
+      preLoaderRoute: typeof ProductsLearningToPerformanceRouteImport
+      parentRoute: typeof ProductsRoute
+    }
     '/products/crm-act': {
       id: '/products/crm-act'
       path: '/crm-act'
       fullPath: '/products/crm-act'
       preLoaderRoute: typeof ProductsCrmActRouteImport
       parentRoute: typeof ProductsRoute
+    }
+    '/products/assessment-tools': {
+      id: '/products/assessment-tools'
+      path: '/assessment-tools'
+      fullPath: '/products/assessment-tools'
+      preLoaderRoute: typeof ProductsAssessmentToolsRouteImport
+      parentRoute: typeof ProductsRoute
+    }
+    '/insights/whitepapers': {
+      id: '/insights/whitepapers'
+      path: '/whitepapers'
+      fullPath: '/insights/whitepapers'
+      preLoaderRoute: typeof InsightsWhitepapersRouteImport
+      parentRoute: typeof InsightsRoute
+    }
+    '/insights/webinars': {
+      id: '/insights/webinars'
+      path: '/webinars'
+      fullPath: '/insights/webinars'
+      preLoaderRoute: typeof InsightsWebinarsRouteImport
+      parentRoute: typeof InsightsRoute
+    }
+    '/insights/news': {
+      id: '/insights/news'
+      path: '/news'
+      fullPath: '/insights/news'
+      preLoaderRoute: typeof InsightsNewsRouteImport
+      parentRoute: typeof InsightsRoute
+    }
+    '/insights/articles': {
+      id: '/insights/articles'
+      path: '/articles'
+      fullPath: '/insights/articles'
+      preLoaderRoute: typeof InsightsArticlesRouteImport
+      parentRoute: typeof InsightsRoute
+    }
+    '/clients/success-stories': {
+      id: '/clients/success-stories'
+      path: '/success-stories'
+      fullPath: '/clients/success-stories'
+      preLoaderRoute: typeof ClientsSuccessStoriesRouteImport
+      parentRoute: typeof ClientsRoute
+    }
+    '/clients/partners': {
+      id: '/clients/partners'
+      path: '/partners'
+      fullPath: '/clients/partners'
+      preLoaderRoute: typeof ClientsPartnersRouteImport
+      parentRoute: typeof ClientsRoute
+    }
+    '/clients/learning-impact': {
+      id: '/clients/learning-impact'
+      path: '/learning-impact'
+      fullPath: '/clients/learning-impact'
+      preLoaderRoute: typeof ClientsLearningImpactRouteImport
+      parentRoute: typeof ClientsRoute
+    }
+    '/clients/industries': {
+      id: '/clients/industries'
+      path: '/industries'
+      fullPath: '/clients/industries'
+      preLoaderRoute: typeof ClientsIndustriesRouteImport
+      parentRoute: typeof ClientsRoute
     }
     '/about/who-we-are': {
       id: '/about/who-we-are'
@@ -409,29 +718,91 @@ const AboutRouteChildren: AboutRouteChildren = {
 
 const AboutRouteWithChildren = AboutRoute._addFileChildren(AboutRouteChildren)
 
+interface ClientsRouteChildren {
+  ClientsIndustriesRoute: typeof ClientsIndustriesRoute
+  ClientsLearningImpactRoute: typeof ClientsLearningImpactRoute
+  ClientsPartnersRoute: typeof ClientsPartnersRoute
+  ClientsSuccessStoriesRoute: typeof ClientsSuccessStoriesRoute
+}
+
+const ClientsRouteChildren: ClientsRouteChildren = {
+  ClientsIndustriesRoute: ClientsIndustriesRoute,
+  ClientsLearningImpactRoute: ClientsLearningImpactRoute,
+  ClientsPartnersRoute: ClientsPartnersRoute,
+  ClientsSuccessStoriesRoute: ClientsSuccessStoriesRoute,
+}
+
+const ClientsRouteWithChildren =
+  ClientsRoute._addFileChildren(ClientsRouteChildren)
+
+interface InsightsRouteChildren {
+  InsightsArticlesRoute: typeof InsightsArticlesRoute
+  InsightsNewsRoute: typeof InsightsNewsRoute
+  InsightsWebinarsRoute: typeof InsightsWebinarsRoute
+  InsightsWhitepapersRoute: typeof InsightsWhitepapersRoute
+}
+
+const InsightsRouteChildren: InsightsRouteChildren = {
+  InsightsArticlesRoute: InsightsArticlesRoute,
+  InsightsNewsRoute: InsightsNewsRoute,
+  InsightsWebinarsRoute: InsightsWebinarsRoute,
+  InsightsWhitepapersRoute: InsightsWhitepapersRoute,
+}
+
+const InsightsRouteWithChildren = InsightsRoute._addFileChildren(
+  InsightsRouteChildren,
+)
+
 interface ProductsRouteChildren {
+  ProductsAssessmentToolsRoute: typeof ProductsAssessmentToolsRoute
   ProductsCrmActRoute: typeof ProductsCrmActRoute
+  ProductsLearningToPerformanceRoute: typeof ProductsLearningToPerformanceRoute
 }
 
 const ProductsRouteChildren: ProductsRouteChildren = {
+  ProductsAssessmentToolsRoute: ProductsAssessmentToolsRoute,
   ProductsCrmActRoute: ProductsCrmActRoute,
+  ProductsLearningToPerformanceRoute: ProductsLearningToPerformanceRoute,
 }
 
 const ProductsRouteWithChildren = ProductsRoute._addFileChildren(
   ProductsRouteChildren,
 )
 
+interface ServicesRouteChildren {
+  ServicesBusinessConsultingRoute: typeof ServicesBusinessConsultingRoute
+  ServicesFacilitatorDigitalLearningRoute: typeof ServicesFacilitatorDigitalLearningRoute
+  ServicesLeadershipManagerialRoute: typeof ServicesLeadershipManagerialRoute
+  ServicesSalesCapabilityRoute: typeof ServicesSalesCapabilityRoute
+  ServicesSoftSkillsRoute: typeof ServicesSoftSkillsRoute
+  ServicesTalentAssessmentRoute: typeof ServicesTalentAssessmentRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesBusinessConsultingRoute: ServicesBusinessConsultingRoute,
+  ServicesFacilitatorDigitalLearningRoute:
+    ServicesFacilitatorDigitalLearningRoute,
+  ServicesLeadershipManagerialRoute: ServicesLeadershipManagerialRoute,
+  ServicesSalesCapabilityRoute: ServicesSalesCapabilityRoute,
+  ServicesSoftSkillsRoute: ServicesSoftSkillsRoute,
+  ServicesTalentAssessmentRoute: ServicesTalentAssessmentRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRouteWithChildren,
-  ClientsRoute: ClientsRoute,
+  ClientsRoute: ClientsRouteWithChildren,
   ContactRoute: ContactRoute,
   ImpactRoute: ImpactRoute,
-  InsightsRoute: InsightsRoute,
+  InsightsRoute: InsightsRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
   ProductsRoute: ProductsRouteWithChildren,
   ProgramsRoute: ProgramsRoute,
-  ServicesRoute: ServicesRoute,
+  ServicesRoute: ServicesRouteWithChildren,
   TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport

@@ -14,29 +14,29 @@ const SUBMENUS: Record<string, { label: string; to: string; desc?: string }[]> =
     { label: "Our Journey", to: "/about/our-journey", desc: "Growth story and milestones" },
   ],
   "/services": [
-    { label: "Leadership & Managerial", to: "/services#leadership" },
-    { label: "Soft Skills & Behavioral", to: "/services#soft-skills" },
-    { label: "Technical & Sales Capability", to: "/services#sales" },
-    { label: "Talent Assessment & Recruitment", to: "/services#talent" },
-    { label: "Facilitator & Digital Learning", to: "/services#facilitator" },
-    { label: "Business Consulting & Advisory", to: "/services#consulting" },
+    { label: "Leadership & Managerial", to: "/services/leadership-managerial", desc: "Build leadership capability" },
+    { label: "Soft Skills", to: "/services/soft-skills", desc: "Strengthen communication and behavior" },
+    { label: "Sales Capability", to: "/services/sales-capability", desc: "Improve sales productivity and advisory" },
+    { label: "Talent Assessment", to: "/services/talent-assessment", desc: "Select and map the right talents" },
+    { label: "Facilitator & Digital Learning", to: "/services/facilitator-digital-learning", desc: "Develop modern learning capability" },
+    { label: "Business Consulting", to: "/services/business-consulting", desc: "Improve execution and performance" },
   ],
   "/products": [
     { label: "CRM ACT", to: "/products/crm-act", desc: "AI-powered banking sales execution" },
-    { label: "Learning-to-Performance Tools", to: "/products#l2p" },
-    { label: "Assessment & Evaluation Tools", to: "/products#assessment" },
+    { label: "Learning-to-Performance", to: "/products/learning-to-performance", desc: "Training impact tools" },
+    { label: "Assessment Tools", to: "/products/assessment-tools", desc: "Capability and talent assessment" },
   ],
   "/clients": [
-    { label: "Our Partners", to: "/clients#partners" },
-    { label: "Industries We Serve", to: "/clients#industries" },
-    { label: "Success Stories", to: "/clients#stories" },
-    { label: "Learning Impact", to: "/clients#impact" },
+    { label: "Our Partners", to: "/clients/partners", desc: "Trusted client portfolio" },
+    { label: "Industries We Serve", to: "/clients/industries", desc: "Sector-specific expertise" },
+    { label: "Success Stories", to: "/clients/success-stories", desc: "Outcome-driven examples" },
+    { label: "Learning Impact", to: "/clients/learning-impact", desc: "Measurement and evaluation" },
   ],
   "/insights": [
-    { label: "Articles", to: "/insights#articles" },
-    { label: "Whitepapers", to: "/insights#whitepapers" },
-    { label: "Webinars", to: "/insights#webinars" },
-    { label: "News", to: "/insights#news" },
+    { label: "Articles", to: "/insights/articles", desc: "Practical thinking for leaders" },
+    { label: "Whitepapers", to: "/insights/whitepapers", desc: "Executive research and guides" },
+    { label: "Webinars", to: "/insights/webinars", desc: "Learning and briefing sessions" },
+    { label: "News", to: "/insights/news", desc: "Primera updates" },
   ],
 };
 
@@ -103,10 +103,10 @@ export function Header() {
         <nav className="hidden lg:flex items-center" aria-label="Primary">
           {NAV.map((n) => {
             const sub = SUBMENUS[n.to];
-            const isAbout = n.to === "/about";
+            const isTrigger = !!sub;
             return (
               <div key={n.to} className="relative" onMouseEnter={() => setHover(n.to)}>
-                {isAbout ? (
+                {isTrigger ? (
                   <button
                     type="button"
                     onClick={() => setHover(hover === n.to ? null : n.to)}
@@ -179,8 +179,7 @@ export function Header() {
         <div className="container-x py-6 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
           {NAV.map((n) => {
             const sub = SUBMENUS[n.to];
-            const isAbout = n.to === "/about";
-            if (isAbout && sub) {
+            if (sub) {
               const isOpen = hover === n.to;
               return (
                 <div key={n.to} className="border-b border-line/60">

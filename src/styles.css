@@ -61,8 +61,9 @@
   --navy: #002D62;                           /* corporate deep blue */
   --cream: #FFFFFF;                          /* white base */
   --soft: #EAECEF;                           /* soft light gray */
-  --gold: #AF8A60;                           /* premium tan / gold beige */
-  --gold-soft: rgba(175, 138, 96, 0.18);
+  --gold: #7B1F1C;                           /* primary accent — burgundy (was tan, replaced) */
+  --gold-soft: rgba(123, 31, 28, 0.16);
+  --gold-tan: #AF8A60;                       /* legacy tan retained ONLY for subtle decorative borders */
   --orange: #7B1F1C;                         /* premium burgundy / deep maroon */
   --gray-premium: #4A4A4A;
   --line: rgba(74, 74, 74, 0.16);
